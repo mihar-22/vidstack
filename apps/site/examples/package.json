@@ -4,7 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite dev --port 4001"
+    "dev": "vite dev --port 4001",
+    "build": "vite build",
+    "preview": "vite preview --port 4001"
   },
   "dependencies": {
     "@vidstack/player": "1.5.2",

@@ -1,0 +1,135 @@
+.docs {
+  --breadcrumbs-height: 5rem;
+
+  --sidebar-min-width: 90vw;
+  --sidebar-max-width: screen;
+  --sidebar-padding: 0 1.75rem 2rem;
+  --sidebar-border-active: var(--color-brand);
+
+  --content-max-width: 1440px;
+  --article-max-width: 88ch;
+
+  --code-fence-bg: var(--prose-pre-bg, rgb(31, 41, 55));
+  --code-fence-top-bar-bg: rgba(31, 41, 55, 0.3);
+  --code-copied-bg-color: rgba(var(--color-brand-rgb), 0.8);
+  --terminal-line-pointer: var(--color-brand);
+  --code-highlight-border: var(--color-brand);
+  --code-highlight-color: rgba(var(--color-brand-rgb), 0.05);
+}
+
+@media screen and (min-width: 768px) {
+  .docs {
+    --sidebar-min-width: 70vw;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .docs {
+    --breadcrumbs-height: 0px;
+
+    --sidebar-min-width: 17rem;
+    --sidebar-max-width: 17rem;
+    --sidebar-padding: 0 0.5rem 2rem 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1460px) {
+  .docs {
+    --sidebar-padding: 0 0.5rem 2rem 0.25rem;
+  }
+}
+
+.docs pre {
+  tab-size: 2;
+  -o-tab-size: 2;
+  -moz-tab-size: 2;
+}
+
+.docs p + .admonition,
+.docs p + .steps {
+  margin-top: 2.5rem;
+}
+
+.docs .steps + p {
+  margin-top: 4rem;
+}
+
+.docs .admonition + .steps {
+  margin-top: 3.5rem;
+}
+
+.docs .admonition + table {
+  margin-top: 4rem;
+}
+
+.docs .code-fence .code pre {
+  margin: 0;
+}
+
+.docs .code-fence.lang-bash pre span {
+  color: #fafafa !important;
+}
+
+.docs .code-fence.lang-bash pre .line:not(:empty)::before {
+  content: '> ';
+  font-weight: bold;
+  color: var(--kd-terminal-line-pointer);
+}
+
+.docs .step .description > code {
+  color: var(--kd-color-gray-inverse);
+}
+
+.docs .step .code-fence {
+  margin: 0;
+  padding: 0;
+}
+
+.docs .code-fence + .code-fence {
+  margin-top: 0.5rem;
+}
+
+.docs ul + .stackblitz {
+  margin-top: 2rem;
+}
+
+.docs h1 + .steps,
+.docs h2 + .steps,
+.docs h3 + .steps {
+  margin-top: 2.5rem;
+}
+
+.docs .header-anchor {
+  margin-left: -1.25em;
+  padding: 0 0.23em;
+  font-size: 0.9em;
+  opacity: 0;
+  border: 0;
+  background-color: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .docs h1:hover .header-anchor,
+  .docs h2:hover .header-anchor,
+  .docs h3:hover .header-anchor,
+  .docs h4:hover .header-anchor {
+    opacity: 1;
+  }
+}
+
+@media (pointer: coarse) {
+  .docs h1:focus .header-anchor,
+  .docs h2:focus .header-anchor,
+  .docs h3:focus .header-anchor,
+  .docs h4:focus .header-anchor {
+    opacity: 1;
+  }
+}
+
+.docs .header-anchor:focus {
+  opacity: 1;
+}
+
+.DocSearch-Button-Key {
+  @apply !ring-0;
+}

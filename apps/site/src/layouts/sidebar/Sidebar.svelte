@@ -1,0 +1,119 @@
+<script lang="ts">
+  import clsx from 'clsx';
+  import { createEventDispatcher, onMount } from 'svelte';
+  import { route } from '@vitebook/svelte';
+  import { ariaBool, wasEnterKeyPressed, isFunction, scrollIntoCenter } from '@vidstack/foundation';
+
+  import CloseIcon from '~icons/ri/close-fill';
+
+  import { isLargeScreen } from '$src/stores/screen';
+  import Overlay from '$src/components/base/Overlay.svelte';
+  import { getSidebarContext, isActiveSidebarLink } from './context';
+
+  const dispatch = createEventDispatcher();
+
+  let sidebar: HTMLElement;
+
+  // Only valid on small screen (<992px).
+  export let open = false;
+  export let search = false;
+  export let style = '';
+
+  let _class: string | ((state: { open: boolean }) => string) = '';
+  export { _class as class };
+
+  const { links, activeLink } = getSidebarContext();
+
+  function scrollToActiveItem() {
+    if (!$activeLink) return;
+    const activeEl = sidebar.querySelector(`a[href="${$activeLink.slug}"]`);
+    if (activeEl) {
+      scrollIntoCenter(sidebar, activeEl, { behaviour: 'smooth' });
+    }
+  }
+
+  onMount(() => {
+    scrollToActiveItem();
+  });
+</script>
+
+<aside
+  id="main-sidebar"
+  class={clsx('sidebar', isFunction(_class) ? _class({ open }) : _class)}
+  role={!$isLargeScreen ? 'dialog' : null}
+  aria-modal={ariaBool(!$isLargeScreen)}
+  bind:this={sidebar}
+  {style}
+>
+  <div class="flex top-0 left-0 sticky items-center 992:hidden">
+    <div class="flex-1" />
+    <button
+      class={clsx(
+        'text-gray-soft hover:text-gray-inverse p-4 -mx-6',
+        !open && 'pointer-events-none',
+      )}
+      on:pointerdown={() => dispatch('close')}
+      on:keydown={(e) => wasEnterKeyPressed(e) && dispatch('close', true)}
+    >
+      <CloseIcon width="24" height="24" />
+      <span class="sr-only">Close sidebar</span>
+    </button>
+  </div>
+
+  <nav class="992:px-1">
+    {#if search}
+      <div class="-ml-0.5 min-h-[80px] top-0 pointer-events-none sticky hidden 992:block">
+        <div class="bg-white h-6 dark:bg-gray-800" />
+        <div class="bg-white pointer-events-auto relative dark:bg-gray-800">
+          <slot name="search" />
+        </div>
+        <div class="bg-gradient-to-b from-white h-8 dark:from-gray-800" />
+      </div>
+    {/if}
+
+    <slot name="top" />
+
+    <ul class={clsx(!search && 'mt-8', 'pb-28 992:pb-0')}>
+      {#each Object.keys($links) as category (category)}
+        {@const categoryLinks = links[category]}
+        <li class="mt-12 992:mt-10 first:mt-0">
+          <h5 class="font-semibold text-gray-strong text-lg mb-8 992:mb-3">
+            {category}
+          </h5>
+          <ul class="border-gray-divider border-l space-y-3">
+            {#each categoryLinks as link (link.title + link.slug)}
+              <li class="first:mt-6">
+                <a
+                  class={clsx(
+                    '992:py-1.5 -ml-px flex items-center border-l-2 py-2 pl-4',
+                    isActiveSidebarLink(link, $route.url.pathname)
+                      ? 'text-brand font-semibold'
+                      : 'hover:border-gray-inverse text-gray-soft hover:text-gray-inverse border-transparent font-normal',
+                  )}
+                  href={link.slug}
+                  style={isActiveSidebarLink(link, $route.url.pathname)
+                    ? 'border-color: var(--sidebar-border-active);'
+                    : ''}
+                >
+                  {#if link.icon?.before}
+                    <svelte:component this={link.icon.before} class="mr-1" width="24" height="24" />
+                  {/if}
+                  {link.title}
+                  {#if link.icon?.after}
+                    <svelte:component this={link.icon.after} class="ml-1" width="24" height="24" />
+                  {/if}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </li>
+      {/each}
+    </ul>
+
+    <slot name="bottom" />
+  </nav>
+</aside>
+
+<div class="z-40 992:hidden">
+  <Overlay {open} />
+</div>

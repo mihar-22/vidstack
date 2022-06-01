@@ -1,12 +1,9 @@
 module.exports = {
+  darkMode: 'class',
+  content: ['./src/**/*.{svelte,md}', './pages/**/*.{svelte,md}'],
   experimental: {
     optimizeUniversalDefaults: true,
   },
-  content: [
-    './src/**/*.{html,svelte,md,js,ts}',
-    './node_modules/@svelteness/kit-docs/client/**/*.svelte',
-  ],
-  darkMode: 'class',
   theme: {
     fontFamily: {
       sans: ['var(--font-family-sans)'],
@@ -46,9 +43,9 @@ module.exports = {
           400: '#616161',
           500: '#313131',
           600: '#292929',
-          700: '#222222',
-          800: '#1A1A1A',
-          900: '#121212',
+          700: '#202020',
+          800: '#161616',
+          900: '#181818',
           divider: 'var(--color-gray-divider)',
           soft: 'var(--color-gray-soft)',
           inverse: 'var(--color-gray-inverse)',
@@ -62,11 +59,7 @@ module.exports = {
       typography,
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    // require('@tailwindcss/forms')({ strategy: 'class' }),
-    customVariants,
-  ],
+  plugins: [require('@tailwindcss/typography'), customVariants],
 };
 
 function customVariants({ addVariant }) {

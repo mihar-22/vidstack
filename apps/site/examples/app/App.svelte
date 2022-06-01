@@ -3,7 +3,7 @@
   import RootLayout from './RootLayout.svelte';
   import Layouts from './Layouts.svelte';
 
-  const files = import.meta.glob('../src/**/*.{html,svelte,tsx}');
+  const files = import.meta.glob('../{analytics,player,uploader}/**/*.{html,svelte,tsx}');
 
   const privateRouteRE = /\/_.*?\..*?$/;
   const stripQueryParamRE = /\?.*?/;
@@ -59,7 +59,7 @@
     (path) => path === location.pathname && !routes[path].private,
   );
 
-  $: activeRoute = routes[activePath];
+  $: activeRoute = routes[activePath ?? ''];
 
   $: layouts = getLayouts(activePath);
 
