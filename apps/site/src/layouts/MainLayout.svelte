@@ -9,7 +9,7 @@
   import { env } from '$src/env';
   import { isLargeScreen } from '$src/stores/screen';
   import { scrollDirection, scrollTop } from '$src/stores/scroll';
-  import { addJSLibToPath, jsLib } from '$src/stores/jsLib';
+  import { addJSLibToPath, jsLib } from '$src/stores/js-lib';
 
   import vidstackLogo from '$src/img/brand/vidstack-logo.svg?raw';
   import vidstackSymbol from '$src/img/brand/vidstack-symbol.svg?raw';
@@ -41,7 +41,7 @@
   function showProgress() {
     window.clearTimeout(navigatingTimeout);
     navigatingTimeout = window.setTimeout(() => {
-      if (!$navigation.loading) return;
+      if (!$navigation) return;
       NProgress.start();
     }, 500);
   }
@@ -53,11 +53,11 @@
 
     // Fix to catch progress accidentally starting.
     window.setTimeout(() => {
-      if (!$navigation.loading) NProgress.done();
+      if (!$navigation) NProgress.done();
     }, 500);
   }
 
-  $: if (env.browser && $navigation.loading) {
+  $: if (env.browser && $navigation) {
     showProgress();
   } else if (env.browser) {
     hideProgress();
@@ -91,7 +91,7 @@
           ? 'bg-gray-100 dark:bg-gray-800'
           : 'supports-backdrop-blur:bg-white/60 bg-gray-200/95 backdrop-filter backdrop-blur dark:bg-gray-800/60',
         collapseNavbar
-          ? '-translate-y-[calc(calc(var(--navbar-height)-var(--breadcrumbs-height))+1px)]'
+          ? '-translate-y-[calc(calc(var(--navbar-height)-var(--breadcrumbs-height))+8px)]'
           : 'translate-y-0',
       )}
       style="border-bottom: var(--navbar-border-bottom);"
@@ -116,11 +116,11 @@
             >
               <Button class="rounded-md px-1 pt-4" href="/">
                 <div
-                  class="h-7 text-gray-inverse w-32 svg-responsive hidden overflow-hidden 992:inline-block"
+                  class="h-6 text-gray-inverse svg-responsive hidden overflow-hidden 992:inline-block"
                 >
                   {@html vidstackLogo}
                 </div>
-                <div class="h-8 -ml-2 w-8 svg-responsive overflow-hidden 992:hidden">
+                <div class="h-8 -ml-2 mt-0.5 w-8 svg-responsive overflow-hidden 992:hidden">
                   {@html vidstackSymbol}
                 </div>
               </Button>

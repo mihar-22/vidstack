@@ -92,6 +92,7 @@ function typography(theme) {
           letterSpacing: '-0.025em',
         },
         h2: {
+          marginTop: `1.75em`,
           marginBottom: `${16 / 24}em`,
         },
         h3: {
@@ -119,7 +120,7 @@ function typography(theme) {
           ...theme('fontSize.sm')[1],
         },
         ul: {
-          paddingLeft: '1rem',
+          paddingLeft: '1.25rem',
         },
         'ul > li': {
           position: 'relative',
@@ -143,7 +144,7 @@ function typography(theme) {
         a: {
           fontWeight: theme('fontWeight.semibold'),
           textDecoration: 'none',
-          borderBottom: `1px solid var(--kd-color-brand)`,
+          borderBottom: `1px solid var(--color-brand)`,
         },
         'a:hover': {
           borderBottomWidth: '2px',
@@ -160,11 +161,11 @@ function typography(theme) {
           fontWeight: 'inherit',
         },
         code: {
-          fontWeight: theme('fontWeight.medium'),
+          fontWeight: theme('fontWeight.semibold'),
           fontVariantLigatures: 'none',
         },
         pre: {
-          backgroundColor: 'var(--kd-prose-pre-bg)',
+          backgroundColor: 'var(--prose-pre-bg)',
           boxShadow: 'none',
           display: 'flex',
         },

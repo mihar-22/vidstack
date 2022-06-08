@@ -1,4 +1,4 @@
-import { mediaQuery } from './mediaQuery';
+import { mediaQuery } from './media-query';
 
 export const isLargeScreen = mediaQuery('(min-width: 992px)');
 

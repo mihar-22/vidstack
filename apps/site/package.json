@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vitebook dev --port 3001",
+    "dev": "vitebook dev --port 3001 --host",
     "build": "vitebook build",
     "preview": "vitebook preview --port 3001",
     "lint:prettier": "prettier . --write --loglevel warn"

@@ -1,5 +1,5 @@
 <script>
-  import { addJSLibToPath, jsLib } from '$src/stores/jsLib';
+  import { addJSLibToPath, jsLib } from '$src/stores/js-lib';
 
   import Button from '$src/components/base/Button.svelte';
 </script>

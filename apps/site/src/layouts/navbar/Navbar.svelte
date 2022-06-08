@@ -4,9 +4,9 @@
   import { uppercaseFirstLetter } from '@vidstack/foundation';
 
   import MenuIcon from '~icons/ri/menu-5-line';
-  import ArrowDropDownIcon from '~icons/ri/arrow-drop-down-fill';
+  import ArrowDropDownIcon from '~icons/ri/arrow-drop-down-line';
 
-  import { colorScheme } from '$src/stores/colorScheme';
+  import { colorScheme } from '$src/stores/color-scheme';
   import Popover from '$src/components/base/Popover.svelte';
   import ColorSchemeMenu from '$src/components/base/ColorSchemeMenu.svelte';
 
@@ -43,16 +43,16 @@
 
       <Popover overlay on:open={onOpenPopover} on:close={onClosePopover}>
         <svelte:fragment slot="button">
-          <MenuIcon width="30" height="30" />
+          <MenuIcon class="mr-2" width="30" height="30" />
           <span class="sr-only">Open Main Menu</span>
         </svelte:fragment>
 
         <slot name="popover-top" />
 
         <section class="flex flex-col items-start">
-          <h1 class="font-medium text-xl mb-6">Links</h1>
+          <h1 class="text-gray-soft text-lg mb-3">Links</h1>
           <nav>
-            <ul>
+            <ul class="-ml-0.5">
               {#each $links as navLink (navLink.title)}
                 <NavLinkItem {...navLink} />
               {/each}
@@ -62,22 +62,22 @@
 
         <slot name="popover-middle" />
 
-        <hr class="border-dashed border-t-2 border-gray-200 h-2 my-6 w-full dark:border-gray-400" />
+        <hr class="border-t border-gray-200 mt-8 h-2 mb-6 w-full dark:border-gray-400" />
 
         <section class="flex flex-col items-start">
-          <h1 class="font-medium text-xl mb-6">Options</h1>
+          <h1 class="text-gray-soft text-lg mb-3">Options</h1>
           <div class="flex flex-col space-y-6">
             <slot name="popover-options" />
             <div class="flex items-center">
-              Theme
+              <span class="text-lg 992:text-base">Theme</span>
 
               <label
-                class="border rounded-md flex border-gray-200 ml-4 py-1 px-4 relative items-center dark:border-gray-400 focus-within:ring-2"
+                class="border rounded-md flex border-gray-200 ml-4 py-2 pl-4 pr-3 relative items-center dark:border-gray-400 focus-within:ring-2"
                 style="--tw-ring-color: var(--color-focus);"
               >
                 <span class="sr-only">Color Scheme</span>
                 {uppercaseFirstLetter($colorScheme)}
-                <ArrowDropDownIcon width="20" height="20" class="ml-1" />
+                <ArrowDropDownIcon width="20" height="20" class="ml-1 mt-px" />
                 <select
                   class="opacity-0 inset-0 absolute appearance-none"
                   bind:value={$colorScheme}
@@ -97,7 +97,7 @@
 
     <div class="hidden 992:flex 992:items-center">
       <nav>
-        <ul class="flex font-medium space-x-8 text-lg items-center">
+        <ul class="flex space-x-8 items-center">
           {#each $links as navLink (navLink.title)}
             <NavLinkItem {...navLink} />
           {/each}
@@ -106,7 +106,7 @@
 
       <slot name="right" />
 
-      <div class="border-gray-divider border-l-[1.5px] h-7 mr-2.5 ml-6 w-2" />
+      <div class="border-gray-divider border-l-[1.5px] h-7 mr-2 ml-5 w-2" />
 
       <div class="hidden items-center 992:flex">
         <slot name="right-alt" />

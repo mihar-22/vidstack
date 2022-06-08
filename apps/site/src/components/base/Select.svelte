@@ -1,7 +1,7 @@
 <script lang="ts">
   import clsx from 'clsx';
 
-  import ArrowDropDownIcon from '~icons/ri/arrow-drop-down-fill';
+  import ArrowDropDownIcon from '~icons/ri/arrow-drop-down-line';
 
   export let title: string;
   export let options: string[] = [];
@@ -16,12 +16,13 @@
 <div class="inline-block">
   <label
     class={clsx(
-      'relative flex items-center border border-gray-divider',
-      rounded && 'rounded-full',
+      'relative flex items-center border border-gray-divider pl-3 pr-[5px] py-0.5',
+      'transition-transform hover:scale-[1.025] transform-gpu',
+      rounded && 'rounded-md',
       disabled ? 'text-gray-300' : 'text-gray-inverse focus-within:ring-2',
-      raised ? 'bg-gray-elevate hover:bg-gray-hover shadow-sm' : 'hover:bg-gray-hover',
+      raised ? 'bg-gray-divider dark:bg-gray-elevate shadow-sm' : 'hover:bg-gray-hover',
     )}
-    style="padding: var(--select-padding, 0.25rem 0.2rem 0.25rem 0.5rem); min-width: var(--select-min-width, 6rem); --tw-ring-color: var(--select-color-focus);"
+    style="--tw-ring-color: var(--color-focus);"
   >
     <slot name="before-title" />
 
@@ -38,7 +39,7 @@
       <ArrowDropDownIcon
         width={arrowWidth}
         height={arrowHeight}
-        class="ml-[var(--select-arrow-margin-left,0.1rem)]"
+        class="mt-0.5 ml-[var(--select-arrow-margin-left,1px)]"
       />
     </div>
 

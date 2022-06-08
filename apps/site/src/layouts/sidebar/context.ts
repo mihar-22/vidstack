@@ -5,7 +5,6 @@ import { derived, type Readable } from 'svelte/store';
 export type SidebarLink = {
   title: string;
   slug: string;
-  match?: 'deep' | RegExp;
   icon?: { before?: typeof SvelteComponent; after?: typeof SvelteComponent };
 };
 
@@ -13,18 +12,8 @@ export type SidebarLinks = {
   [category: string]: SidebarLink[];
 };
 
-export function isActiveSidebarLink({ match, slug }: SidebarLink, currentPath: string) {
-  const path = currentPath.replace(/\.html/, '');
-
-  if (match === 'deep') {
-    return path === slug || (path.startsWith(slug) && path[slug.length] === '/');
-  }
-
-  if (match instanceof RegExp) {
-    return match.test(slug);
-  }
-
-  return path === slug;
+export function isActiveSidebarLink({ slug }: SidebarLink, currentPath: string) {
+  return currentPath.startsWith(slug);
 }
 
 export type SidebarContext = {
@@ -62,7 +51,7 @@ export function createSidebarContext(links: Readable<SidebarLinks>): SidebarCont
   const activeCategory = derived([links, activeLink], ([$links, $activeLink]) => {
     const category =
       Object.keys($links).find((category) =>
-        links[category]?.some(
+        $links[category]?.some(
           (link) => link.title === $activeLink?.title && link.slug === $activeLink?.slug,
         ),
       ) ?? null;

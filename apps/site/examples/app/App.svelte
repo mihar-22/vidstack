@@ -5,7 +5,7 @@
 
   const files = import.meta.glob('../{analytics,player,uploader}/**/*.{html,svelte,tsx}');
 
-  const privateRouteRE = /\/_.*?\..*?$/;
+  const privateRouteRE = /\/(_|@).*?\..*?$/;
   const stripQueryParamRE = /\?.*?/;
 
   const routes = Object.keys(files).reduce(
@@ -28,7 +28,7 @@
   }
 
   const rootLayout = {
-    file: '__layout.svelte',
+    file: '@layout.svelte',
     loader: () => ({ default: RootLayout }),
   };
 
@@ -42,7 +42,7 @@
 
     for (let i = 1; i < segments.length; i += 1) {
       const segment = segments.slice(0, i).join('/');
-      const path = paths.find((path) => path === `/${segment}/__layout.svelte`);
+      const path = paths.find((path) => path === `/${segment}/@layout.svelte`);
       if (path) {
         const file = routes[path].file;
         layouts.push({

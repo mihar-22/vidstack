@@ -1,7 +1,7 @@
 .docs {
   --breadcrumbs-height: 5rem;
 
-  --sidebar-min-width: 90vw;
+  --sidebar-min-width: 320px;
   --sidebar-max-width: screen;
   --sidebar-padding: 0 1.75rem 2rem;
   --sidebar-border-active: var(--color-brand);
@@ -18,16 +18,13 @@
 }
 
 @media screen and (min-width: 768px) {
-  .docs {
-    --sidebar-min-width: 70vw;
-  }
 }
 
 @media screen and (min-width: 992px) {
   .docs {
     --breadcrumbs-height: 0px;
 
-    --sidebar-min-width: 17rem;
+    --sidebar-min-width: 14.5rem;
     --sidebar-max-width: 17rem;
     --sidebar-padding: 0 0.5rem 2rem 1.5rem;
   }
@@ -62,6 +59,10 @@
   margin-top: 4rem;
 }
 
+.docs .tabbed-links + p {
+  margin-top: 2.5rem;
+}
+
 .docs .code-fence .code pre {
   margin: 0;
 }
@@ -73,11 +74,11 @@
 .docs .code-fence.lang-bash pre .line:not(:empty)::before {
   content: '> ';
   font-weight: bold;
-  color: var(--kd-terminal-line-pointer);
+  color: var(--terminal-line-pointer);
 }
 
 .docs .step .description > code {
-  color: var(--kd-color-gray-inverse);
+  color: var(--color-gray-inverse);
 }
 
 .docs .step .code-fence {
@@ -102,7 +103,7 @@
 .docs .header-anchor {
   margin-left: -1.25em;
   padding: 0 0.23em;
-  font-size: 0.9em;
+  font-size: 0.8em;
   opacity: 0;
   border: 0;
   background-color: none;
@@ -123,6 +124,7 @@
   .docs h3:focus .header-anchor,
   .docs h4:focus .header-anchor {
     opacity: 1;
+    margin-left: 0;
   }
 }
 

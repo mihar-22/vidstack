@@ -1,18 +1,27 @@
 <script lang="ts">
-  import { markdown, route } from '@vitebook/svelte';
+  import { frontmatter, markdown, route } from '@vitebook/svelte';
 
   import { getSidebarContext } from '$src/layouts/sidebar/context';
   import socialCardLarge from '$src/img/brand/social-card-large.jpg';
+  import { jsLib, titleCaseJSLib } from '$src/stores/js-lib';
 
   const { activeCategory } = getSidebarContext();
 
   $: category = $activeCategory ? `${$activeCategory}: ` : '';
-  $: title = $markdown?.title ? `${category}${$markdown.title} | Vidstack` : null;
+  $: lib = $jsLib !== 'html' ? ` (${titleCaseJSLib($jsLib)})` : '';
+  $: mdTitle = $frontmatter?.title ?? $markdown?.title;
+  $: title = mdTitle ? `${category}${mdTitle}${lib} | Vidstack` : null;
   $: description = $markdown?.frontmatter.description;
 </script>
 
 <svelte:head>
-  {#key $route.url.pathname}
+  <meta name="docsearch:version" content="latest" />
+
+  {#key $jsLib}
+    <meta name="docsearch:jslib" content={$jsLib} />
+  {/key}
+
+  {#key title}
     {#if title}
       <title>{title}</title>
       <meta property="og:title" content={title} />

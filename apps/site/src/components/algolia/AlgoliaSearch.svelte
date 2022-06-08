@@ -2,7 +2,7 @@
   // @ts-expect-error - no types.
   import docsearch from '@docsearch/js';
 
-  import { jsLib } from '$src/stores/jsLib';
+  import { jsLib } from '$src/stores/js-lib';
 
   import clsx from 'clsx';
   import { onMount } from 'svelte';

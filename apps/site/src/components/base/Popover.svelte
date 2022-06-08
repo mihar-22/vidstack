@@ -10,7 +10,7 @@
 
   import CloseIcon from '~icons/ri/close-fill';
 
-  import { dialogManager, type CloseDialogCallback } from '$src/actions/dialogManager';
+  import { dialogManager, type CloseDialogCallback } from '$src/actions/dialog-manager';
   import { isLargeScreen } from '$src/stores/screen';
 
   import Overlay from './Overlay.svelte';
@@ -99,7 +99,7 @@
             on:pointerdown={() => closeDialog()}
             on:keydown={(e) => wasEnterKeyPressed(e) && closeDialog(true)}
           >
-            <CloseIcon width="24" height="24" />
+            <CloseIcon width="28" height="28" />
             <span class="sr-only">Close</span>
           </button>
         </div>

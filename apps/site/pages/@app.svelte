@@ -1,9 +1,20 @@
 <script context="module">
+  import { get } from 'svelte/store';
   import { createSvelteViewRenderer } from '@vitebook/svelte';
 
+  import { isLargeScreen } from '$src/stores/screen';
+
   /** @type {import('@vitebook/core').ConfigureApp} */
-  export function configureApp({ renderers }) {
+  export function configureApp({ router, renderers }) {
     renderers.push(createSvelteViewRenderer());
+
+    router.scrollBase = () => {
+      const noHash = !get(router.navigation)?.to.hash;
+      return {
+        top: noHash ? 0 : get(isLargeScreen) ? 128 : 192,
+        behavior: 'smooth',
+      };
+    };
   }
 </script>
 

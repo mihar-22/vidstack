@@ -4,14 +4,13 @@
   import '$src/styles/docsearch.css';
 
   import clsx from 'clsx';
-  import { writable } from 'svelte/store';
+  import { type Readable, writable } from 'svelte/store';
   import { markdown, route } from '@vitebook/svelte';
   import { ariaBool, hideDocumentScrollbar } from '@vidstack/foundation';
 
   import Button from '$src/components/base/Button.svelte';
-  import LibSelect from '$src/components/LibSelect.svelte';
   import MetaTags from '$src/components/MetaTags.svelte';
-  import { type CloseDialogCallback, dialogManager } from '$src/actions/dialogManager';
+  import { type CloseDialogCallback, dialogManager } from '$src/actions/dialog-manager';
 
   import MenuUnfoldIcon from '~icons/ri/menu-unfold-fill';
   import RightArrowIcon from '~icons/ri/arrow-right-s-line';
@@ -22,16 +21,13 @@
   import { createSidebarContext, setSidebarContext, type SidebarLinks } from './sidebar/context';
   import { setOnThisPageContext, type OnThisPageConfig } from './toc/context';
 
-  export let sidebar: SidebarLinks;
+  export let sidebar: Readable<SidebarLinks>;
 
   let search = true;
   let isSidebarOpen = false;
   let closeSidebar: CloseDialogCallback;
 
-  const sideLinks = writable<SidebarLinks>(sidebar);
-  $: $sideLinks = sidebar;
-
-  const sidebarContext = createSidebarContext(sideLinks);
+  const sidebarContext = createSidebarContext(sidebar);
   setSidebarContext(sidebarContext);
   const { activeCategory, activeLink, nextLink, previousLink } = sidebarContext;
 
@@ -55,20 +51,16 @@
   );
 </script>
 
-<MetaTags />
-
 <div class="docs contents">
   <MainLayout>
+    <MetaTags />
+
     <svelte:fragment slot="search">
       <slot name="search" />
     </svelte:fragment>
 
-    <div class="-mt-0.5 ml-2 992:ml-3" slot="navbar-left">
-      <LibSelect />
-    </div>
-
     <svelte:fragment slot="navbar-bottom">
-      <div class="border-gray-divider border-t flex mt-4 w-full pt-4 items-center 992:hidden">
+      <div class="border-gray-divider border-t flex mt-3 w-full pt-4 items-center 992:hidden">
         <button
           id="main-sidebar-button"
           type="button"

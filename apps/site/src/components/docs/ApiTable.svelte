@@ -53,7 +53,7 @@
     camelToTitleCase,
     kebabToPascalCase,
   } from '@vidstack/foundation';
-  import { jsLib } from '$src/stores/jsLib';
+  import { jsLib } from '$src/stores/js-lib';
 
   export let api: ComponentApi;
 

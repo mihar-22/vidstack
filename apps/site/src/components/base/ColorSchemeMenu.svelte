@@ -7,7 +7,7 @@
 
   import Menu from '$src/components/base/Menu.svelte';
   import MenuItem from '$src/components/base/MenuItem.svelte';
-  import { colorScheme, colorSchemes, isDarkColorScheme } from '$src/stores/colorScheme';
+  import { colorScheme, colorSchemes, isDarkColorScheme } from '$src/stores/color-scheme';
 
   const buttonIcon = {
     light: SunIcon,
@@ -23,7 +23,7 @@
 
 <Menu>
   <svelte:fragment slot="button">
-    <svelte:component this={buttonIcon[$colorScheme]} class={'h-6 w-6'} />
+    <svelte:component this={buttonIcon[$colorScheme]} class={'h-[22px] w-[22px]'} />
     <span class="sr-only">Color Scheme</span>
   </svelte:fragment>
 

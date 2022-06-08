@@ -3,7 +3,7 @@
 
   export const loader: ServerLoader = async () => {
     return {
-      redirect: '/docs/player/getting-started/quickstart.html',
+      redirect: '/docs/player/getting-started/quickstart/',
       cache: () => true,
     };
   };

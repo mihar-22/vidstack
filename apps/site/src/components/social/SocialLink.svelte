@@ -30,8 +30,8 @@
   <svelte:component
     this={icons[type]}
     class={clsx($$slots.default && 'mr-2.5')}
-    width="28"
-    height="28"
+    width="24"
+    height="24"
   />
   <span class="sr-only">{title}</span>
   <slot />

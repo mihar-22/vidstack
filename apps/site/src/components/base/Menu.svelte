@@ -7,7 +7,7 @@
   import Transition from 'svelte-class-transition';
   import { ariaBool } from '@vidstack/foundation';
 
-  import { dialogManager } from '$src/actions/dialogManager';
+  import { dialogManager } from '$src/actions/dialog-manager';
 
   export let open = false;
 
@@ -55,7 +55,7 @@
   >
     <ul
       id={menuId}
-      class="bg-gray-elevate border border-gray-divider rounded-md shadow-md mt-2 origin-top-right right-0 w-48 z-50 absolute"
+      class="bg-gray-elevate border border-gray-divider rounded-md shadow-md mt-2 origin-top-right right-0 w-40 z-50 absolute"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby={menuButtonId}
