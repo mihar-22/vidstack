@@ -16,7 +16,7 @@
   $: value = $currentJSLibTitle;
 </script>
 
-<Select title="Current JS Library" bind:value on:change={onChange} raised>
+<Select block title="Current JS Library" bind:value on:change={onChange}>
   <option>HTML</option>
   <option>React</option>
 </Select>

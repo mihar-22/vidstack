@@ -1,6 +1,6 @@
 <!-- For SSR to prevent sidebar jumping on initial render. -->
 <div
-  class="bg-gray-elevate border border-gray-divider rounded-md shadow-sm w-full py-2 px-3 text-sm hidden items-center 992:flex"
+  class="border border-gray-outline rounded-md shadow-sm w-full py-2 px-3 text-sm hidden items-center 992:flex"
 >
   <div class="flex flex-1 items-center">
     <svg width="16" height="16" class="DocSearch-Search-Icon" viewBox="0 0 20 20">
@@ -16,9 +16,9 @@
     </svg>
   </div>
 
-  <span class="flex font-mono space-x-0.5">
+  <span class="flex font-mono space-x-0.5 font-semibold text-gray-soft">
     <span class="text-[17px]">⌘</span>
-    <span class="text-[13px]">K</span>
+    <span class="text-[14px]">K</span>
   </span>
 </div>
 

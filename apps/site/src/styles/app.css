@@ -9,14 +9,16 @@
   --font-family-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation, Mono,
     Fira Code VF, monospace;
 
-  --color-brand: #f30c59;
-  --color-brand-rgb: 243, 12, 89;
+  --color-brand: rgb(219, 39, 119);
+  --color-brand-rgb: 219, 39, 119;
 
   --color-gray-soft: rgb(112, 112, 112);
   --color-gray-inverse: rgb(0, 0, 0);
   --color-gray-current: rgb(255, 255, 255);
+  --color-gray-outline: rgb(234, 234, 234);
+  --color-gray-outline-strong: rgb(220, 220, 220);
   --color-gray-divider: rgb(234, 234, 234);
-  --color-gray-hover: rgb(245, 245, 245);
+  --color-gray-hover: rgb(240, 240, 240);
   --color-gray-hover-inverse: rgb(53, 53, 53);
   --color-gray-elevate: rgb(255, 255, 255);
   --color-gray-body: rgb(255, 255, 255);
@@ -26,22 +28,16 @@
   --navbar-height: 4rem;
   --navbar-padding: 1rem 0.5rem;
   --navbar-max-width: 1440px;
-  --navbar-border-bottom: 1px solid var(--color-gray-divider);
+  --navbar-border-bottom: 1px solid var(--color-gray-outline);
   --breadcrumbs-height: 0px;
 
   --main-padding-x: 1rem;
-
-  /* stackblitz */
-  --sb-width: 100%;
-  --sb-height: 300px;
-  --sb-bg-color: hsl(220 10% 14%);
 }
 
 @media screen and (min-width: 992px) {
   :root {
-    scroll-padding-top: 8rem;
+    scroll-padding-top: 6rem;
     --main-padding-x: 4rem;
-    --sb-height: 500px;
   }
 }
 
@@ -57,17 +53,20 @@
   }
 }
 
-:root.dark {
+:root.dark,
+.prefers-dark-scheme {
   color-scheme: dark;
 
-  --color-brand: #f75a8e;
-  --color-brand-rgb: 247, 90, 142;
+  --color-brand: rgb(244, 114, 182);
+  --color-brand-rgb: 244, 114, 182;
 
   --color-focus: rgb(165 180 252);
 
   --color-gray-soft: rgb(140, 140, 140);
   --color-gray-inverse: rgb(255, 255, 255);
   --color-gray-current: rgb(0, 0, 0);
+  --color-gray-outline: rgb(49, 49, 49);
+  --color-gray-outline-strong: rgb(97, 97, 97);
   --color-gray-divider: rgb(49, 49, 49);
   --color-gray-hover: rgb(54, 54, 54);
   --color-gray-hover-inverse: rgb(245, 245, 245);

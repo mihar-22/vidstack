@@ -1,5 +1,7 @@
 ---
 layout: quickstart
+title: HLS Player Installation
+description: Instructions to get your HLS player installed and on-screen using HTML.
 ---
 
 {% step %}

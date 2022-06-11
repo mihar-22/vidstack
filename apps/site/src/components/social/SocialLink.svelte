@@ -24,7 +24,7 @@
 
 <a
   href={href[type]}
-  class="rounded-md flex border-0 text-gray-soft p-2 relative items-center hover:text-gray-inverse"
+  class="rounded-md flex border-0 text-gray-soft p-2 relative items-center hover:text-gray-inverse transform-gpu transition-transform hover:scale-[1.1]"
   target="_blank"
 >
   <svelte:component

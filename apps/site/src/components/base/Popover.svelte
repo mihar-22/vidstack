@@ -49,6 +49,7 @@
     type="button"
     class={clsx(
       'inline-flex w-full justify-center rounded-md p-2 text-lg font-medium',
+      'transform-gpu transition-transform hover:scale-[1.025]',
       open ? 'text-gray-inverse' : 'text-gray-soft hover:text-gray-inverse',
     )}
     aria-controls={popoverId}
@@ -87,7 +88,7 @@
       role="dialog"
     >
       <div
-        class="bg-gray-elevate border border-gray-divider rounded-md flex flex-col shadow-md min-h-[60px] overflow-hidden"
+        class="bg-gray-elevate border border-gray-outline rounded-md flex flex-col shadow-md min-h-[60px] overflow-hidden"
       >
         <div class="flex z-20 items-center">
           <div class="flex-1" />

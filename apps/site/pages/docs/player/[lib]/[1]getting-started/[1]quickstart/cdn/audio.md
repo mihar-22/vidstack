@@ -1,5 +1,7 @@
 ---
 layout: quickstart
+title: Audio Player Installation (CDN)
+description: Instructions to get your Audio player up and running through a CDN.
 ---
 
 {% step %}

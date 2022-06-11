@@ -1,0 +1,8 @@
+```html
+<vds-media>
+  <vds-play-button>
+    <svg class="play-icon"><!-- ... --></svg>
+    <svg class="pause-icon"><!-- ... --></svg>
+  </vds-play-button>
+</vds-media>
+```

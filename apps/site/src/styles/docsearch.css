@@ -32,9 +32,9 @@
 }
 
 .DocSearch-Button {
-  @apply bg-gray-elevate hover:bg-gray-hover flex h-auto w-full items-center rounded-md py-1.5 px-3 shadow-sm;
-  @apply m-0 text-[15px];
-  border: 1px solid var(--color-gray-divider);
+  @apply hover:bg-gray-hover flex h-auto w-full items-center rounded-md bg-transparent py-1.5 px-3 shadow-sm;
+  @apply m-0 transform-gpu text-[15px] transition-transform hover:scale-[1.025];
+  border: 1px solid var(--color-gray-outline);
 }
 
 .DocSearch-Button:focus-visible,
@@ -53,9 +53,8 @@
 }
 
 .DocSearch-Search-Icon {
+  @apply h-4 w-4;
   margin-right: 0.5rem !important;
-  width: 16px;
-  height: 16px;
 }
 
 .DocSearch-Button-Placeholder {
@@ -68,11 +67,15 @@
 }
 
 .DocSearch-Button-Key {
-  @apply text-gray-inverse top-0 m-0 flex h-auto w-auto justify-center space-x-0.5 bg-none p-0 text-[13px] shadow-none;
+  @apply text-gray-soft top-0 m-0 flex h-auto w-auto justify-center space-x-0.5 bg-none p-0 text-[14px] font-semibold shadow-none;
 }
 
 .DocSearch-Button-Key:first-child {
   @apply text-[17px];
+}
+
+.DocSearch-Control-Key-Icon {
+  @apply mr-[2px] scale-[1.2] transform;
 }
 
 .DocSearch-Input {

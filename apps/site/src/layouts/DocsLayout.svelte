@@ -9,7 +9,7 @@
   import { ariaBool, hideDocumentScrollbar } from '@vidstack/foundation';
 
   import Button from '$src/components/base/Button.svelte';
-  import MetaTags from '$src/components/MetaTags.svelte';
+  import MetaTags from '$src/components/docs/MetaTags.svelte';
   import { type CloseDialogCallback, dialogManager } from '$src/actions/dialog-manager';
 
   import MenuUnfoldIcon from '~icons/ri/menu-unfold-fill';
@@ -60,7 +60,7 @@
     </svelte:fragment>
 
     <svelte:fragment slot="navbar-bottom">
-      <div class="border-gray-divider border-t flex mt-3 w-full pt-4 items-center 992:hidden">
+      <div class="border-gray-outline border-t flex mt-3 w-full pt-4 items-center 992:hidden">
         <button
           id="main-sidebar-button"
           type="button"
@@ -105,7 +105,7 @@
         {search}
         class={({ open }) =>
           clsx(
-            'self-start fixed top-0 left-0 transform bg-gray-body z-50 border-gray-divider border-r',
+            'self-start fixed top-0 left-0 transform bg-gray-body z-50 border-gray-outline border-r',
             '-translate-x-full transform transition-transform duration-200 ease-out will-change-transform',
             'max-h-screen min-h-screen min-w-[var(--sidebar-min-width)] max-w-[var(--sidebar-max-width)]',
             '992:translate-x-0 922:block 992:sticky 992:z-0 overflow-y-auto p-[var(--sidebar-padding)]',

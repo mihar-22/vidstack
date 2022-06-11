@@ -18,7 +18,7 @@
 
     const isCDN = install === 'cdn';
     const installPath = isCDN ? '/cdn' : '';
-    const mediaProviderPath = `/${provider.replace('video', '')}${
+    const mediaProviderPath = `/${provider === 'video' ? '' : provider}${
       provider !== 'video' ? '.html' : ''
     }`;
 

@@ -64,7 +64,7 @@
 
 <div
   class={clsx(
-    'stackblitz border-gray-divider relative overflow-hidden rounded-md border shadow-lg',
+    'stackblitz border-gray-outline relative overflow-hidden rounded-md border shadow-lg',
     _class,
   )}
   style="width: var(--sb-width); height: var(--sb-height);"

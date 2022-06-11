@@ -28,7 +28,7 @@
     id={menuButtonId}
     type="button"
     class={clsx(
-      'inline-flex w-full justify-center rounded-md p-2 text-lg font-medium',
+      'inline-flex w-full justify-center rounded-md p-2 text-lg font-medium transform-gpu transition-transform hover:scale-[1.1]',
       open ? 'text-gray-inverse' : 'text-gray-soft hover:text-gray-inverse',
     )}
     aria-controls={menuId}

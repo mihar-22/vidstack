@@ -8,29 +8,29 @@
   export let value: string = options[0];
   export let disabled = false;
   export let rounded = true;
-  export let raised = true;
-  export let arrowWidth = 20;
-  export let arrowHeight = 20;
+  export let block = false;
+  export let arrowWidth = 22;
+  export let arrowHeight = 22;
 </script>
 
-<div class="inline-block">
+<div class={clsx('inline-block', block && 'w-full')}>
   <label
     class={clsx(
-      'relative flex items-center border border-gray-divider pl-3 pr-[5px] py-0.5',
-      'transition-transform hover:scale-[1.025] transform-gpu',
+      'relative flex items-center border pl-2.5 pr-1 shadow-sm min-w-[85px]',
+      'transition-transform hover:scale-[1.025] transform-gpu hover:bg-gray-hover',
       rounded && 'rounded-md',
+      block ? 'py-1' : 'py-0.5',
       disabled ? 'text-gray-300' : 'text-gray-inverse focus-within:ring-2',
-      raised ? 'bg-gray-divider dark:bg-gray-elevate shadow-sm' : 'hover:bg-gray-hover',
     )}
-    style="--tw-ring-color: var(--color-focus);"
+    style="--tw-ring-color: var(--color-focus); border-color: var(--select-border-color, var(--color-gray-outline));"
   >
     <slot name="before-title" />
 
-    <div class="flex mx-auto items-center justify-center">
+    <div class="flex items-center w-full">
       <span class="sr-only">{title}</span>
 
       <span
-        class="flex h-full mt-0.5 items-center"
+        class="flex h-full mt-0.5 items-center mr-auto"
         style="font-size: var(--select-value-font-size, 0.875rem);"
       >
         {value}
@@ -39,12 +39,12 @@
       <ArrowDropDownIcon
         width={arrowWidth}
         height={arrowHeight}
-        class="mt-0.5 ml-[var(--select-arrow-margin-left,1px)]"
+        class="mt-0.5 ml-[var(--select-arrow-margin-left,-1px)]"
       />
     </div>
 
     <select
-      class="cursor-pointer opacity-0 inset-0 absolute appearance-none"
+      class="cursor-pointer opacity-0 inset-0 absolute appearance-none px-4 py-6"
       bind:value
       on:change
       {disabled}

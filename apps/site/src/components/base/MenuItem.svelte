@@ -18,7 +18,7 @@
 
 <li
   class={clsx(
-    'flex items-center px-4 py-2 text-sm hover:cursor-pointer transition-colors duraiton-100',
+    'flex items-center px-4 py-2 text-base hover:cursor-pointer transition-colors duraiton-100',
     selected
       ? 'text-brand'
       : 'text-gray-soft hover:text-gray-inverse focus-visible:text-gray-inverse',

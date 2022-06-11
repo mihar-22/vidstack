@@ -8,6 +8,8 @@
 
   import { isLargeScreen } from '$src/stores/screen';
   import Overlay from '$src/components/base/Overlay.svelte';
+  import LibSelect from '$src/components/docs/LibSelect.svelte';
+  import VersionSelect from '$src/components/docs/VersionSelect.svelte';
   import { getSidebarContext, isActiveSidebarLink } from './context';
 
   const dispatch = createEventDispatcher();
@@ -45,7 +47,7 @@
   bind:this={sidebar}
   {style}
 >
-  <div class="flex top-0 left-0 sticky items-center 992:hidden">
+  <div class="flex top-0 left-0 sticky items-center 992:hidden z-10">
     <div class="flex-1" />
     <button
       class={clsx(
@@ -60,20 +62,27 @@
     </button>
   </div>
 
-  <nav class="992:px-1">
+  <nav class="992:px-1 -mt-6 992:mt-0">
     {#if search}
-      <div class="-ml-0.5 min-h-[80px] top-0 pointer-events-none sticky hidden 992:block">
-        <div class="bg-white h-6 dark:bg-gray-800" />
+      <div class="-ml-0.5 min-h-[80px] top-0 pointer-events-none sticky z-0">
+        <div class="bg-white 992:h-6 dark:bg-gray-800" />
         <div class="bg-white pointer-events-auto relative dark:bg-gray-800">
-          <slot name="search" />
+          <div class="hidden 992:block">
+            <slot name="search" />
+          </div>
+          <div class="bg-white h-14 992:h-4 dark:bg-gray-800" />
+          <div class="flex items-center w-full space-x-2">
+            <LibSelect />
+            <VersionSelect />
+          </div>
         </div>
-        <div class="bg-gradient-to-b from-white h-7 dark:from-gray-800" />
+        <div class="bg-gradient-to-b from-white h-10 dark:from-gray-800" />
       </div>
     {/if}
 
     <slot name="top" />
 
-    <ul class={clsx('text-base 992:text-sm', !search && 'mt-8', 'pb-28 992:pb-0')}>
+    <ul class={clsx('text-base', !search && 'mt-8', 'pb-28 992:pb-0')}>
       {#each Object.keys($links) as category (category)}
         {@const categoryLinks = $links[category]}
         <li class="mt-9 first:mt-0">
@@ -97,11 +106,11 @@
                   data-prefetch
                 >
                   {#if link.icon?.before}
-                    <svelte:component this={link.icon.before} class="mr-1" width="24" height="24" />
+                    <svelte:component this={link.icon.before} class="mr-1" width="20" height="20" />
                   {/if}
                   {link.title}
                   {#if link.icon?.after}
-                    <svelte:component this={link.icon.after} class="ml-1" width="24" height="24" />
+                    <svelte:component this={link.icon.after} class="ml-1" width="20" height="20" />
                   {/if}
                 </a>
               </li>

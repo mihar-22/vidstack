@@ -1,5 +1,7 @@
 ---
 layout: quickstart
+title: Video Player Installation (CDN)
+description: Instructions to get your video player up and running through a CDN.
 ---
 
 {% step %}

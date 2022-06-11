@@ -1,6 +1,6 @@
 ---
 title: 'Styling - Custom'
-description: Introduction to custom styling Vidstack Player.
+description: Introduction to custom styling with Vidstack Player.
 ---
 
 In this section, we'll cover the basics on how you can easily put together a custom UI with
@@ -34,14 +34,7 @@ You can use the presence and absence of these attributes to style children of th
 `<vds-media>` element with CSS. Here's a quick example where we add a controls container and
 hide it based on some media state:
 
-```html {% title="player.html" copyHighlight=true highlight"3-5" %}
-<vds-media>
-  <!-- ... -->
-  <div class="media-controls">
-    <!-- ... -->
-  </div>
-</vds-media>
-```
+{% code_snippet name="intro" /%}
 
 ```css {% title="player.css" copy=true %}
 .media-controls {

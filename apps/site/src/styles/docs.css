@@ -8,13 +8,16 @@
 
   --content-max-width: 1440px;
   --article-max-width: 88ch;
+}
 
-  --code-fence-bg: var(--prose-pre-bg, rgb(31, 41, 55));
-  --code-fence-top-bar-bg: rgba(31, 41, 55, 0.3);
+.code-preview,
+.code-fence {
+  --code-fence-bg: rgb(22, 22, 22);
+  --code-fence-top-bar-bg: rgb(22, 22, 22 / 0.6);
   --code-copied-bg-color: rgba(var(--color-brand-rgb), 0.8);
   --terminal-line-pointer: var(--color-brand);
   --code-highlight-border: var(--color-brand);
-  --code-highlight-color: rgba(var(--color-brand-rgb), 0.05);
+  --code-highlight-color: rgba(var(--color-brand-rgb), 0.1);
 }
 
 @media screen and (min-width: 768px) {
@@ -24,7 +27,7 @@
   .docs {
     --breadcrumbs-height: 0px;
 
-    --sidebar-min-width: 14.5rem;
+    --sidebar-min-width: 15rem;
     --sidebar-max-width: 17rem;
     --sidebar-padding: 0 0.5rem 2rem 1.5rem;
   }

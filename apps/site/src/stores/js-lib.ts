@@ -69,3 +69,12 @@ export const currentJSLibSidebar = (links: Readable<SidebarLinks>) =>
 
     return libLinks;
   });
+
+export function getJSLibFileExt(lib: JSLibType) {
+  switch (lib) {
+    case 'react':
+      return '.jsx';
+    default:
+      return `.${lib}`;
+  }
+}

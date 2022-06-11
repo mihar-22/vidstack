@@ -44,15 +44,22 @@ If we were to write vanilla CSS to show and hide icons inside a play button, it 
 something like this:
 {% /no %}
 
+{% code_snippet name="tw-bad" /%}
+
 ```css
 .play-icon,
-vds-media[paused] .pause-icon {
+.pause-icon {
+  opacity: 100;
+}
+
+/* Hide play icon when media is _not_ paused. */
+vds-media:not([paused]) .play-icon {
   opacity: 0;
 }
 
-.pause-icon,
-vds-media[paused] .play-icon {
-  opacity: 100;
+/* Hide pause icon when media is paused. */
+vds-media[paused] .pause-icon {
+  opacity: 0;
 }
 ```
 
@@ -60,20 +67,7 @@ vds-media[paused] .play-icon {
 Using the Tailwind plugin, we could rewrite it like so:
 {% /yes %}
 
-```html {% highlight="7,9" %}
-<vds-media>
-  <!-- ... -->
-
-  <div class="media-controls">
-    <vds-play-button>
-      <!-- Pause Icon. -->
-      <svg class="media-paused:opacity-0 opacity-100"></svg>
-      <!-- Play Icon. -->
-      <svg class="media-paused:opacity-100 opacity-0"></svg>
-    </vds-play-button>
-  </div>
-</vds-media>
-```
+{% code_snippet name="tw-good" /%}
 
 Isn't that so much easier to comprehend? That's basically the plugin in a nutshell,
 we'll leave the rest to your imagination. In the next sections, you'll find out more about
@@ -96,15 +90,4 @@ The following example showcases a track with a fill inside indicating the amount
 playback time that has passed. When the media is buffering (indicated by the `media-waiting` variant)
 we change the fill background color.
 
-```html {% copy=true %}
-<div class="relative h-6 w-full bg-gray-200">
-  <div
-    class="
-			media-waiting:bg-sky-500 absolute top-0 left-0 h-full w-full
-			origin-left
-			scale-x-[calc(var(--vds-current-time)/var(--vds-duration))]
-			transform bg-gray-400 will-change-transform
-		"
-  ></div>
-</div>
-```
+{% code_snippet name="tw-example" /%}

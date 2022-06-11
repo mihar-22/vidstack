@@ -161,9 +161,9 @@
       <div
         id={`scroll-${category}`}
         class={clsx(
-          'border-gray-divider relative flex flex-col border',
+          'border-gray-outline relative flex flex-col border',
           'scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent overflow-auto',
-          'scrollbar-track:!bg-gray-divider scrollbar-thumb:!rounded scrollbar-thumb:!bg-gray-300',
+          'scrollbar-track:!bg-gray-outline scrollbar-thumb:!rounded scrollbar-thumb:!bg-gray-300',
           'scrollbar-track:!rounded mt-[2em]',
           !showAll && 'max-h-[390px]',
         )}
@@ -173,9 +173,9 @@
           {@const isOpen = _isOpen[key]}
           {@const hasLink = 'link' in prop}
 
-          <div id={key} class="border-gray-divider border-t flex flex-col first:border-0">
+          <div id={key} class="border-gray-outline border-t flex flex-col first:border-0">
             <div
-              class="border-gray-divider border-b w-full not-prose relative hover:bg-[#fafafa] dark:hover:bg-[#343434]"
+              class="border-gray-outline border-b w-full not-prose relative hover:bg-[#fafafa] dark:hover:bg-[#343434]"
             >
               <h3 class="font-medium text-gray-inverse text-sm">
                 <button

@@ -3,7 +3,7 @@
   style="scrollbar-width: none;"
 >
   <div class="min-w-full flex-none pr-4">
-    <ul class="flex space-x-5 whitespace-nowrap border-b border-gray-divider">
+    <ul class="flex space-x-5 whitespace-nowrap border-b border-gray-outline">
       <slot />
     </ul>
   </div>

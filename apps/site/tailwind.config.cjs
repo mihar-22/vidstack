@@ -46,6 +46,8 @@ module.exports = {
           700: '#202020',
           800: '#161616',
           900: '#181818',
+          outline: 'var(--color-gray-outline)',
+          'outline-strong': 'var(--color-gray-outline-strong)',
           divider: 'var(--color-gray-divider)',
           soft: 'var(--color-gray-soft)',
           inverse: 'var(--color-gray-inverse)',
@@ -54,6 +56,16 @@ module.exports = {
           'hover-inverse': 'var(--color-gray-hover-inverse)',
           elevate: 'var(--color-gray-elevate)',
           body: 'var(--color-gray-body)',
+        },
+      },
+      animation: {
+        indeterminate: 'indeterminate 1.2s linear infinite',
+      },
+      keyframes: {
+        indeterminate: {
+          '0%': { transform: 'translateX(0) scaleX(0)' },
+          '40%': { transform: 'translateX(0) scaleX(0.4)' },
+          '100%': { transform: 'translateX(100%) scaleX(0.5)' },
         },
       },
       typography,
@@ -80,7 +92,7 @@ function typography(theme) {
       css: {
         '--tw-prose-counters': 'black',
         '--tw-prose-invert-counters': 'white',
-        color: theme('colors.gray.soft'),
+        color: '#585858',
         fontSize: '18px',
         maxWidth: 'none',
         hr: {
@@ -165,7 +177,7 @@ function typography(theme) {
           fontVariantLigatures: 'none',
         },
         pre: {
-          backgroundColor: 'var(--prose-pre-bg)',
+          backgroundColor: 'var(--code-fence-bg)',
           boxShadow: 'none',
           display: 'flex',
         },
@@ -242,6 +254,7 @@ function typography(theme) {
     },
     invert: {
       css: {
+        color: '#a3a3a3',
         'tbody tr:nth-child(odd)': {
           backgroundColor: theme('colors.gray.700'),
         },

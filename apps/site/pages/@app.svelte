@@ -11,7 +11,7 @@
     router.scrollBase = () => {
       const noHash = !get(router.navigation)?.to.hash;
       return {
-        top: noHash ? 0 : get(isLargeScreen) ? 128 : 192,
+        top: noHash ? 0 : get(isLargeScreen) ? 96 : 192,
         behavior: 'smooth',
       };
     };

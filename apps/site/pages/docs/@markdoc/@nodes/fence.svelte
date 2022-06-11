@@ -41,7 +41,7 @@
   // `linesCount-1` since last line is always empty (prettier)
   $: lines = [...Array(linesCount - 1).keys()].map((n) => n + 1);
 
-  $: unescapedRawCode = unescapeHTML(code) ?? '';
+  $: unescapedRawCode = unescapeHTML(code ?? '') ?? '';
 
   let showCopiedCodePrompt = false;
   async function copyCodeToClipboard() {
@@ -80,19 +80,19 @@
 
 <div
   class={clsx(
-    'code-fence overflow-y-auto relative max-h-[60vh] 576:max-h-[32rem] my-8 rounded-md shadow-lg mx-auto',
-    'border border-gray-divider',
+    'code-fence overflow-y-auto relative max-h-[60vh] 576:max-h-[24rem] my-8 rounded-md shadow-lg mx-auto',
+    'border border-gray-outline prefers-dark-scheme',
     lang && `lang-${lang}`,
   )}
   style="background-color: var(--code-fence-bg);"
 >
   {#if showTopBar}
     <div
-      class="sticky top-0 left-0 z-10 flex items-center rounded-md pt-2 backdrop-filter backdrop-blur supports-backdrop-blur:bg-white/60"
+      class="code-fence-top-bar sticky top-0 left-0 z-10 flex items-center pt-2 py-1 backdrop-filter backdrop-blur"
       style="background-color: var(--code-fence-top-bar-bg);"
     >
       {#if hasTopbarTitle}
-        <span class="ml-3.5 font-mono text-sm text-gray-300">{topbarTitle}</span>
+        <span class="code-fence-title ml-3.5 font-mono text-sm text-gray-300">{topbarTitle}</span>
       {/if}
 
       <div class="flex-1" />
@@ -105,7 +105,7 @@
         >
           <div
             class={clsx(
-              'text-white absolute top-2.5 right-4 transition-opacity z-10 duration-300 px-2 py-1 rounded-md ease-out text-sm font-mono',
+              'text-gray-current absolute top-2.5 right-4 transition-opacity z-10 duration-300 px-2 py-1 rounded-md ease-out text-sm font-mono',
               showCopiedCodePrompt ? 'opacity-100' : 'hidden opacity-0',
             )}
             aria-hidden="true"
@@ -130,7 +130,7 @@
   {/if}
 
   <div class="code relative z-0 overflow-hidden">
-    <div class={clsx(nums && 'pl-10')}>
+    <div class={clsx(nums && '992:pl-10')}>
       <pre>
         {@html highlightedCode}
       </pre>
@@ -138,10 +138,10 @@
 
     {#if nums}
       <pre
-        class="absolute top-3.5 left-0 m-0 flex flex-col text-sm leading-[27px]"
-        style="background-color: transparent; border-radius: 0; padding-top: 0;">
+        class="hidden 992:flex absolute top-3.5 left-0 m-0 flex-col text-sm leading-[27px]"
+        style="border-radius: 0; padding-top: 0;">
 			<div
-          class="hidden flex-none select-none text-right text-slate-600 992:block"
+          class="hidden flex-none select-none text-right text-gray-300 992:block"
           aria-hidden="true">{lines.join('\n')}</div>
 		</pre>
     {/if}

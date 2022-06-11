@@ -1,5 +1,9 @@
+import { kebabToTitleCase } from '@vidstack/foundation';
+import { noendslash, sortOrderedPageFiles } from '@vitebook/core';
 import fs from 'fs';
 import path from 'path';
+
+import type { SidebarLink, SidebarLinks } from '$src/layouts/sidebar/context';
 
 export function readDirDeepSync(dir: string, exclude?: RegExp) {
   const files: string[] = [];
@@ -16,4 +20,45 @@ export function readDirDeepSync(dir: string, exclude?: RegExp) {
   }
 
   return files;
+}
+
+export function loadSidebar(): SidebarLinks {
+  const exclude = /\/_|@layout|@markdoc|\/api\.md$|quickstart\/[^index]|styling\/[^index]/;
+  const stripRootPathRE = /^(.*?)\[lib\]\//;
+
+  const files = readDirDeepSync('pages/docs/player/[lib]', exclude).map((file) =>
+    file.replace(stripRootPathRE, ''),
+  );
+
+  const slugs = sortOrderedPageFiles(files).map((file) =>
+    file.replace(/\/index\.md$/, '/').replace(/\.md$/, '.html'),
+  );
+
+  return {
+    'Getting Started': links(slugs, /^\/getting-started/),
+    Providers: links(slugs, /^\/components\/providers/),
+    Media: links(slugs, /^\/components\/media/),
+    UI: links(slugs, /^\/components\/ui/),
+  };
+}
+
+const formattedTitle = {
+  Hls: 'HLS',
+  Youtube: 'YouTube',
+};
+
+function links(slugs: string[], include: RegExp): SidebarLink[] {
+  return slugs
+    .filter((slug) => include.test(slug))
+    .map((slug) => {
+      const title = kebabToTitleCase(
+        noendslash(slug.replace(/\.html$/, ''))
+          .split('/')
+          .pop()!,
+      );
+      return {
+        title: formattedTitle[title] ?? title,
+        slug: `/docs/player${slug}`,
+      };
+    });
 }

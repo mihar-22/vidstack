@@ -193,7 +193,14 @@ export function dialogManager(
     dialogDisposal.dispose();
   }
 
-  disposal.add(listen(dialogBtn, 'pointerdown', onOpenDialog));
+  disposal.add(
+    listen(dialogBtn, 'pointerdown', (e) => {
+      setTimeout(() => {
+        onOpenDialog(e);
+      }, 100);
+    }),
+  );
+
   disposal.add(listen(document.body, 'pointerdown', () => onCloseDialog()));
   disposal.add(
     listen(dialogBtn, 'keydown', (e) => wasEnterKeyPressed(e) && onOpenDialogWithKeyboard()),

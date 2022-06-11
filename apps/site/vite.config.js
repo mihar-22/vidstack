@@ -3,6 +3,8 @@ import SveltePlugin from '@vitebook/svelte/node';
 import { transform as esbuildTransform } from 'esbuild';
 import Icons from 'unplugin-icons/vite';
 
+import Highlight from './plugins/highlight.js';
+import Snippets from './plugins/snippets.js';
 // import ComponentsDocs from './plugins/components/index.js';
 
 export default defineConfig({
@@ -30,17 +32,17 @@ export default defineConfig({
       },
     ],
     plugins: [
+      Highlight(),
+      Snippets(),
+      Icons({ compiler: 'svelte' }),
       SveltePlugin({
         svelte: {
           preprocess: [typescriptPreprocessor()],
         },
       }),
+      // ComponentsDocs()
     ],
   },
-  plugins: [
-    Icons({ compiler: 'svelte' }),
-    // ComponentsDocs()
-  ],
 });
 
 /**

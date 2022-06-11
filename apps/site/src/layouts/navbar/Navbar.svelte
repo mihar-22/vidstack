@@ -4,7 +4,6 @@
   import { uppercaseFirstLetter } from '@vidstack/foundation';
 
   import MenuIcon from '~icons/ri/menu-5-line';
-  import ArrowDropDownIcon from '~icons/ri/arrow-drop-down-line';
 
   import { colorScheme } from '$src/stores/color-scheme';
   import Popover from '$src/components/base/Popover.svelte';
@@ -12,6 +11,7 @@
 
   import NavLinkItem from './NavLink.svelte';
   import { getNavbarContext } from './context';
+  import Select from '$src/components/base/Select.svelte';
 
   export let search = false;
 
@@ -62,7 +62,7 @@
 
         <slot name="popover-middle" />
 
-        <hr class="border-t border-gray-200 mt-8 h-2 mb-6 w-full dark:border-gray-400" />
+        <hr class="border-t mt-8 h-2 mb-6 w-full border-gray-outline-strong" />
 
         <section class="flex flex-col items-start">
           <h1 class="text-gray-soft text-lg mb-3">Options</h1>
@@ -70,23 +70,20 @@
             <slot name="popover-options" />
             <div class="flex items-center">
               <span class="text-lg 992:text-base">Theme</span>
-
-              <label
-                class="border rounded-md flex border-gray-200 ml-4 py-2 pl-4 pr-3 relative items-center dark:border-gray-400 focus-within:ring-2"
-                style="--tw-ring-color: var(--color-focus);"
-              >
-                <span class="sr-only">Color Scheme</span>
-                {uppercaseFirstLetter($colorScheme)}
-                <ArrowDropDownIcon width="20" height="20" class="ml-1 mt-px" />
-                <select
-                  class="opacity-0 inset-0 absolute appearance-none"
-                  bind:value={$colorScheme}
+              <div class="ml-2">
+                <Select
+                  title="Color Scheme"
+                  value={uppercaseFirstLetter($colorScheme)}
+                  on:change={(e) => {
+                    $colorScheme = e.target.value;
+                  }}
+                  --select-border-color="var(--color-gray-outline-strong)"
                 >
                   <option value="light">Light</option>
                   <option value="dark">Dark</option>
                   <option value="system">System</option>
-                </select>
-              </label>
+                </Select>
+              </div>
             </div>
           </div>
         </section>

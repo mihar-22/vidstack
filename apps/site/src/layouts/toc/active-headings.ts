@@ -1,7 +1,7 @@
 import { getRouter } from '@vitebook/svelte';
 import { onMount, tick } from 'svelte';
 
-import { isExtraLargeScreen } from '$src/stores/screen';
+import { isExtraLargeScreen, isLargeScreen } from '$src/stores/screen';
 import { createDisposalBin } from '$src/utils/events.js';
 import { throttleAndDebounce } from '$src/utils/timing';
 
@@ -13,7 +13,13 @@ export function useActiveHeaderLinks(context: OnThisPageContext) {
   const scrollDisposal = createDisposalBin();
   const destroyDisposal = createDisposalBin();
 
-  const SCROLL_OFFSET = 130;
+  let SCROLL_OFFSET = 96;
+
+  destroyDisposal.add(
+    isLargeScreen.subscribe(($is) => {
+      SCROLL_OFFSET = $is ? 96 : 192;
+    }),
+  );
 
   let canUpdateHash: OnThisPageConfig['canUpdateHash'] = undefined;
   destroyDisposal.add(

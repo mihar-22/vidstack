@@ -1,5 +1,7 @@
 ---
 layout: quickstart
+title: HLS Player Installation (CDN)
+description: Instructions to get your HLS player up and running through a CDN.
 ---
 
 {% step %}

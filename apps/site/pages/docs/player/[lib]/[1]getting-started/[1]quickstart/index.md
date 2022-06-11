@@ -1,5 +1,7 @@
 ---
 layout: quickstart
+title: Video Player Installation
+description: Instructions to get your video player installed and on-screen using HTML.
 ---
 
 {% step %}
