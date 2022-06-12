@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 import type { SidebarLink, SidebarLinks } from '$src/layouts/sidebar/context';
+import { formatElementHeading } from '$src/stores/element';
 
 export function readDirDeepSync(dir: string, exclude?: RegExp) {
   const files: string[] = [];
@@ -42,11 +43,6 @@ export function loadSidebar(): SidebarLinks {
   };
 }
 
-const formattedTitle = {
-  Hls: 'HLS',
-  Youtube: 'YouTube',
-};
-
 function links(slugs: string[], include: RegExp): SidebarLink[] {
   return slugs
     .filter((slug) => include.test(slug))
@@ -57,7 +53,7 @@ function links(slugs: string[], include: RegExp): SidebarLink[] {
           .pop()!,
       );
       return {
-        title: formattedTitle[title] ?? title,
+        title: formatElementHeading(title),
         slug: `/docs/player${slug}`,
       };
     });

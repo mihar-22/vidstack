@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { route } from '@vitebook/svelte';
+  import clsx from 'clsx';
   import { ariaBool } from '@vidstack/foundation';
 
-  import { getJSLibFileExt, jsLib, stripJSLibFromPath } from '$src/stores/js-lib';
+  import { jsLib, jsLibExts } from '$src/stores/js-lib';
   import { intersectionObserver } from '$src/actions/intersection-observer';
-
-  import snippets from ':virtual/code_snippets';
-  import CodeFence from './@nodes/fence.svelte';
+  import { codeSnippets } from '$src/stores/code-snippets';
   import IndeterminateLoading from '$src/components/base/IndeterminateLoading.svelte';
+
+  import CodeFence from './@nodes/fence.svelte';
 
   export let name: string;
   export let title: string | null = null;
@@ -18,13 +18,11 @@
     return `.${parts[parts.length - 1]}`;
   }
 
-  $: filename = !name.includes('.') ? `${name}${getJSLibFileExt($jsLib)}` : name;
-  $: baseRoutePath = stripJSLibFromPath($route.url.pathname).replace('/docs/player/', '');
-  $: activeSnippets = snippets.filter((snippet) => baseRoutePath.startsWith(snippet.path));
+  $: filenames = !name.includes('.') ? $jsLibExts.map((ext) => `${name}${ext}`) : [name];
 
-  $: currentSnippet =
-    activeSnippets.find((snippet) => snippet.name.startsWith(filename)) ??
-    activeSnippets.find((snippet) => snippet.name === `${name}.html`); // try and fallback to html
+  $: currentSnippet = $codeSnippets.find((snippet) =>
+    filenames.some((filename) => snippet.name === filename),
+  );
 
   $: currentTitle = currentSnippet ? title?.replace('$ext', getExt(currentSnippet.name)) : '';
 
@@ -37,6 +35,11 @@
       : highlight;
 
   $: estimatedCodeHeight = (currentSnippet?.lines ?? 0) * 27;
+
+  $: lineNums =
+    currentSnippet && $$restProps.nums
+      ? [...Array(currentSnippet.lines).keys()].map((n) => n + 1)
+      : [];
 
   let tokens;
   let hasLoaded = false;
@@ -56,12 +59,20 @@
       isVisible = true;
     }
   };
+
+  if (import.meta.hot) {
+    import.meta.hot.on('vidstack::invalidate_snippet', async ({ name, path, importPath }) => {
+      if (currentSnippet && currentSnippet.path === path && filenames.includes(name)) {
+        tokens = await import(/* @vite-ignore */ importPath);
+      }
+    });
+  }
 </script>
 
-{#if !hasLoaded}
+{#if currentSnippet && !hasLoaded}
   <div
-    class="code-fence overflow-y-auto relative max-h-[60vh] 576:max-h-[32rem] my-8 rounded-md shadow-lg mx-auto border border-gray-outline"
-    style="color-scheme: dark; background-color: var(--code-fence-bg);"
+    class="code-fence relative scrollbar overflow-y-auto max-h-[60vh] 576:max-h-[32rem] my-8 rounded-md shadow-lg mx-auto border border-gray-outline prefers-dark-scheme"
+    style="background-color: var(--code-fence-bg);"
     aria-busy={ariaBool(!hasLoaded)}
     use:intersectionObserver={{ callback: onIntersect }}
   >
@@ -73,10 +84,29 @@
       <div style="height: 28px;" />
     {/if}
 
-    <pre class="m-0">
-      <div style={`height: ${estimatedCodeHeight}px;`} />
-    </pre>
+    <div class="code relative z-0 overflow-hidden">
+      <div class={clsx($$restProps.nums && '992:pl-10')}>
+        <pre class="m-0 overflow-x-auto scrollbar">
+          <code
+            style={clsx(
+              `width: ${currentSnippet.scrollX * 9.48}px;`,
+              `height: ${estimatedCodeHeight}px;`,
+            )}
+          />
+        </pre>
+      </div>
+
+      {#if $$restProps.nums}
+        <pre
+          class="hidden 992:flex absolute top-3.5 left-0 m-0 flex-col text-sm leading-[27px]"
+          style="border-radius: 0; padding-top: 0;">
+          <div
+            class="hidden flex-none select-none text-right text-gray-300 992:block"
+            aria-hidden="true">{lineNums.join('\n')}</div>
+		    </pre>
+      {/if}
+    </div>
   </div>
-{:else}
+{:else if tokens}
   <CodeFence {...tokens} title={currentTitle} highlight={currentHighlight} {...$$restProps} />
 {/if}

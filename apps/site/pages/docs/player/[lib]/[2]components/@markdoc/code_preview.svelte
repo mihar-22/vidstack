@@ -1,29 +1,25 @@
 <script lang="ts">
-  import { route } from '@vitebook/svelte';
+  import clsx from 'clsx';
   import { ariaBool } from '@vidstack/foundation';
 
-  import { jsLib, stripJSLibFromPath, getJSLibFileExt } from '$src/stores/js-lib';
-
-  import previews from ':virtual/code_previews';
-  import CodeSnippet from '../../../../@markdoc/code_snippet.svelte';
-  import clsx from 'clsx';
+  import { jsLibExts } from '$src/stores/js-lib';
   import { intersectionObserver } from '$src/actions/intersection-observer';
   import IndeterminateLoading from '$src/components/base/IndeterminateLoading.svelte';
+  import { codeSnippets } from '$src/stores/code-snippets';
+  import { codePreviews } from '$src/stores/code-previews';
+
+  import CodeSnippet from '../../../../@markdoc/code_snippet.svelte';
 
   export let name: string;
   export let copy = true;
   export let css = false;
-  export let size: 'small' | 'medium' | 'large' = 'medium';
+  export let size: 'small' | 'medium' | 'large' | 'xlarge' = 'medium';
 
-  $: jsExt = getJSLibFileExt($jsLib);
-
-  $: snippets = [`${name}${jsExt}`, css && `${name}.css`].filter(Boolean) as string[];
-
-  $: baseRoutePath = stripJSLibFromPath($route.url.pathname).replace('/docs/player/', '');
-
-  $: preview = previews.find(
-    (snippet) => snippet.name === name && baseRoutePath.startsWith(snippet.path),
+  $: snippetNames = [...$jsLibExts.map((ext) => `${name}${ext}`), css && `${name}.css`].filter(
+    (name) => name && $codeSnippets.some((snippet) => snippet.name === name),
   );
+
+  $: preview = $codePreviews.find((preview) => preview.name === name);
 
   let component;
   let activeTab = 0;
@@ -48,35 +44,38 @@
 </script>
 
 <div
-  class="code-preview flex flex-col rounded-md shadow-lg mx-auto overflow-hidden border border-gray-outline text-gray-300 prefers-dark-scheme"
-  style="color-scheme: dark; background-color: var(--code-fence-bg);"
+  class="code-preview flex flex-col rounded-md my-8 shadow-lg mx-auto overflow-hidden border border-gray-outline text-gray-300 prefers-dark-scheme"
+  style="background-color: var(--code-fence-bg);"
   aria-busy={ariaBool(!hasLoaded)}
   use:intersectionObserver={{ callback: onIntersect }}
 >
   <div
     class={clsx(
-      'w-full flex items-center justify-center rounded-md rounded-b-none overflow-auto relative',
+      'w-full flex items-center justify-center rounded-md rounded-b-none overflow-auto relative scroll-contain scrollbar',
       size === 'small' && 'h-48',
       size === 'medium' && 'h-72',
       size === 'large' && 'h-96',
+      size === 'xlarge' && 'h-[450px]',
     )}
   >
     {#if !hasLoaded}
       <IndeterminateLoading />
     {/if}
 
-    <svelte:component this={component} />
+    <div class="contents not-prose">
+      <svelte:component this={component} />
+    </div>
   </div>
 
   <div class="relative">
     <div
       class={clsx(
         'flex flex-row no-scrollbar not-prose border-t border-b border-gray-outline z-10',
-        snippets.length === 1 && 'hidden',
+        snippetNames.length === 1 && 'hidden',
       )}
     >
       <ul class={clsx('w-full list-none flex whitespace-nowrap')}>
-        {#each snippets as snippet, i (snippet)}
+        {#each snippetNames as name, i (name)}
           <li class="z-0 focus-within:z-10">
             <button
               class={clsx(
@@ -89,16 +88,16 @@
                 activeTab = i;
               }}
             >
-              {snippet}
+              {name}
             </button>
           </li>
         {/each}
       </ul>
     </div>
-    <div class={clsx('z-0', snippets.length === 1 && 'border-t border-gray-outline')}>
-      {#each snippets as snippet, i (snippet)}
+    <div class={clsx('z-0', snippetNames.length === 1 && 'border-t border-gray-outline')}>
+      {#each snippetNames as name, i (name)}
         <div class={clsx('code-snippet', i !== activeTab && 'hidden')}>
-          <CodeSnippet nums name={snippet} {copy} {...$$restProps} />
+          <CodeSnippet nums {name} {copy} {...$$restProps} />
         </div>
       {/each}
     </div>

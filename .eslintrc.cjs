@@ -20,7 +20,6 @@ module.exports = {
     'packages/*/globals.d.ts',
     'packages/*/src/react/index.ts',
     'packages/*/src/react/components/**',
-    'apps/site/pages/**/_snippets/**',
   ],
   plugins: ['import', 'svelte3', '@typescript-eslint', 'simple-import-sort'],
   overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],

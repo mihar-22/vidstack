@@ -5,9 +5,9 @@
   export const events = [
     'pointerdown (origin)',
     'vds-play-request',
-    'play',
+    'play (native)',
     'vds-play',
-    'playing',
+    'playing (native)',
     'vds-playing',
   ];
 </script>

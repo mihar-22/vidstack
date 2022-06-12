@@ -70,11 +70,15 @@ export const currentJSLibSidebar = (links: Readable<SidebarLinks>) =>
     return libLinks;
   });
 
-export function getJSLibFileExt(lib: JSLibType) {
+export const jsLibExts = derived(jsLib, ($jsLib) => getJSLibFileExts($jsLib));
+
+export function getJSLibFileExts(lib: JSLibType) {
   switch (lib) {
     case 'react':
-      return '.jsx';
+      return ['.jsx', '.tsx'];
+    case 'html':
+      return ['.html', '.js', '.ts'];
     default:
-      return `.${lib}`;
+      return [`.${lib}`];
   }
 }

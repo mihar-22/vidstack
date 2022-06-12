@@ -34,7 +34,7 @@ You can use the presence and absence of these attributes to style children of th
 `<vds-media>` element with CSS. Here's a quick example where we add a controls container and
 hide it based on some media state:
 
-{% code_snippet name="intro" /%}
+{% code_snippet name="intro" highlight="html:2-4|react:6" /%}
 
 ```css {% title="player.css" copy=true %}
 .media-controls {

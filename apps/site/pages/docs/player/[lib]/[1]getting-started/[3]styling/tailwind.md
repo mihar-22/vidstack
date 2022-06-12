@@ -67,7 +67,7 @@ vds-media[paused] .pause-icon {
 Using the Tailwind plugin, we could rewrite it like so:
 {% /yes %}
 
-{% code_snippet name="tw-good" /%}
+{% code_snippet name="tw-good" highlight="html:4,6|react:8,10" /%}
 
 Isn't that so much easier to comprehend? That's basically the plugin in a nutshell,
 we'll leave the rest to your imagination. In the next sections, you'll find out more about

@@ -80,8 +80,8 @@
 
 <div
   class={clsx(
-    'code-fence overflow-y-auto relative max-h-[60vh] 576:max-h-[24rem] my-8 rounded-md shadow-lg mx-auto',
-    'border border-gray-outline prefers-dark-scheme',
+    'code-fence overflow-y-auto relative max-h-[60vh] 576:max-h-[32rem] my-8 rounded-md shadow-lg mx-auto',
+    'border border-gray-outline prefers-dark-scheme scrollbar scroll-contain',
     lang && `lang-${lang}`,
   )}
   style="background-color: var(--code-fence-bg);"
@@ -131,7 +131,7 @@
 
   <div class="code relative z-0 overflow-hidden">
     <div class={clsx(nums && '992:pl-10')}>
-      <pre>
+      <pre class="scrollbar">
         {@html highlightedCode}
       </pre>
     </div>
@@ -140,10 +140,10 @@
       <pre
         class="hidden 992:flex absolute top-3.5 left-0 m-0 flex-col text-sm leading-[27px]"
         style="border-radius: 0; padding-top: 0;">
-			<div
+			  <div
           class="hidden flex-none select-none text-right text-gray-300 992:block"
           aria-hidden="true">{lines.join('\n')}</div>
-		</pre>
+		  </pre>
     {/if}
 
     {#if currentHighlightedLines.length > 0}

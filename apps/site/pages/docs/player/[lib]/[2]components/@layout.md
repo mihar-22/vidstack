@@ -3,7 +3,7 @@
 
 {% component_tabbed_links /%}
 
-{% component_experimental /%}
+{% experimental_element /%}
 
 ## Import
 

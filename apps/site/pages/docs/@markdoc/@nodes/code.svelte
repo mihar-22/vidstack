@@ -23,14 +23,12 @@
   }
 
   function translate(lib: JSLibType, code: string) {
-    if (lib === 'html') return code;
-
     if (tag) {
-      return toComponentName(code);
+      return lib === 'html' ? `&lt;${code}&gt;` : toComponentName(code);
     } else if (attr) {
-      return toPropertyName(code);
-    } else if (event && lib === 'react') {
-      return toJSXEventName(code);
+      return lib === 'html' ? code : toPropertyName(code);
+    } else if (event) {
+      return lib !== 'react' ? code : toJSXEventName(code);
     }
 
     return code;

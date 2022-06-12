@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="@vidstack/player/globals" />
 /// <reference types="@vitebook/core/globals" />
 /// <reference types="@vitebook/svelte/globals" />
 /// <reference types="unplugin-icons/types/svelte" />
@@ -14,6 +15,7 @@ declare module ':virtual/code_snippets' {
   export type CodeSnippet = {
     name: string;
     lines: number;
+    scrollX: number;
     path: string;
     loader: () => Promise<{ lang: string; code: string; highlightedCode: string }>;
   };

@@ -75,7 +75,8 @@ export function useActiveHeaderLinks(context: OnThisPageContext) {
   };
 
   function getAnchorTop(anchor: HTMLAnchorElement): number {
-    return anchor.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET - 15;
+    const rect = anchor.getBoundingClientRect();
+    return rect.top + window.scrollY - SCROLL_OFFSET - rect.height / 2;
   }
 
   function isAnchorActive(

@@ -4,13 +4,22 @@
   import { getSidebarContext } from '$src/layouts/sidebar/context';
   import socialCardLarge from '$src/img/brand/social-card-large.jpg';
   import { jsLib, titleCaseJSLib } from '$src/stores/js-lib';
+  import { elementHeading } from '$src/stores/element';
+  import { isApiPath } from '$src/stores/path';
 
   const { activeCategory } = getSidebarContext();
 
   $: category = $activeCategory ? `${$activeCategory}: ` : '';
   $: lib = $jsLib !== 'html' ? ` (${titleCaseJSLib($jsLib)})` : '';
+
   $: mdTitle = $frontmatter?.title ?? $markdown?.title;
-  $: title = mdTitle ? `${category}${mdTitle}${lib} | Vidstack` : null;
+
+  $: elementTitle =
+    $elementHeading.length > 0 ? `${$elementHeading}${$isApiPath ? ' API' : ''}` : null;
+
+  $: title =
+    mdTitle || elementTitle ? `${category}${mdTitle ?? elementTitle}${lib} | Vidstack` : null;
+
   $: description = $markdown?.frontmatter.description;
 </script>
 

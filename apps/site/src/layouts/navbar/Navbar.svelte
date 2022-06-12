@@ -79,9 +79,9 @@
                   }}
                   --select-border-color="var(--color-gray-outline-strong)"
                 >
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                  <option value="system">System</option>
+                  <option>Light</option>
+                  <option>Dark</option>
+                  <option>System</option>
                 </Select>
               </div>
             </div>

@@ -161,10 +161,7 @@
       <div
         id={`scroll-${category}`}
         class={clsx(
-          'border-gray-outline relative flex flex-col border',
-          'scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent overflow-auto',
-          'scrollbar-track:!bg-gray-outline scrollbar-thumb:!rounded scrollbar-thumb:!bg-gray-300',
-          'scrollbar-track:!rounded mt-[2em]',
+          'border-gray-outline relative flex flex-col border scrollbar overflow-auto mt-[2em]',
           !showAll && 'max-h-[390px]',
         )}
       >

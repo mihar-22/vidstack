@@ -6,19 +6,22 @@
 
   export let title;
   export let href;
+  export let disabled = false;
 
-  $: _href = addJSLibToPath(href, $jsLib);
-  $: isActive = $route.url.pathname === _href;
+  $: _href = disabled ? null : addJSLibToPath(href, $jsLib);
+  $: isActive = !disabled && $route.url.pathname === _href;
 </script>
 
 <li>
   <h2>
     <a
       class={clsx(
-        '-mb-px flex border-current pt-3 pb-2.5 leading-6 px-4 hover:border-b-2',
-        isActive ? 'text-brand font-semibold border-b-2' : 'text-gray-soft hover:text-gray-inverse',
+        '-mb-px flex border-current pt-3 pb-2.5 leading-6 px-4 hover:border-b-2 cursor-pointer',
+        isActive && 'text-brand font-semibold border-b-2',
+        !isActive && !disabled && 'text-gray-soft hover:text-gray-inverse',
       )}
       href={_href}
+      {disabled}
     >
       {title}
     </a>

@@ -9,6 +9,10 @@ export const elementTagName = derived(route, ($route) => {
   return name ? `vds-${name}` : '';
 });
 
+export const comingSoonElement = derived(elementTagName, ($tagName) =>
+  /vds-(youtube|vimeo)/.test($tagName),
+);
+
 /** Auto-generate in the future by using doc tags in `@vidstack/player`. */
 export const EXPERIMENTAL_TAG_NAMES = new Set(['vds-media-visibility', 'vds-gesture']);
 
@@ -22,7 +26,7 @@ export const elementHeading = derived(
     `${formatElementHeading(kebabToTitleCase($elementTagName.replace('vds-', '')))}`,
 );
 
-function formatElementHeading(name: string) {
+export function formatElementHeading(name: string) {
   if (name === 'Hls') return 'HLS';
   if (name === 'Youtube') return 'YouTube';
   return name;

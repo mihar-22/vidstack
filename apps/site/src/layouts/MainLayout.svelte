@@ -87,9 +87,7 @@
     <div
       class={clsx(
         'fixed top-0 z-30 w-full flex-none transform-gpu transition-transform duration-150 ease-out',
-        isNavPopoverOpen
-          ? 'bg-gray-100 dark:bg-gray-800'
-          : 'supports-backdrop-blur:bg-white/60 bg-gray-200/95 backdrop-filter backdrop-blur dark:bg-gray-800/60',
+        isNavPopoverOpen ? 'bg-gray-100 dark:bg-gray-800' : 'blur-bg',
         collapseNavbar
           ? '-translate-y-[calc(calc(var(--navbar-height)-var(--breadcrumbs-height))+8px)]'
           : 'translate-y-0',

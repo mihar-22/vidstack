@@ -1,4 +1,6 @@
 <script>
+  import { comingSoonElement, elementTagName } from '$src/stores/element';
+
   import { route } from '@vitebook/svelte';
 
   import TabbedLink from '../../../../@markdoc/tabbed_link.svelte';
@@ -11,5 +13,5 @@
 
 <TabbedLinks>
   <TabbedLink title="Docs" href={docsHref} />
-  <TabbedLink title="API" href={apiHref} />
+  <TabbedLink title="API" href={apiHref} disabled={$comingSoonElement} />
 </TabbedLinks>
