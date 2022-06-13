@@ -97,7 +97,9 @@ for ~96.42% of users tracked on caniuse.
 
 {% /steps %}
 
-Congratulations, you're done! You should see the media player on your site 🎉
+Congratulations, you're done 🎉 You might not see anything yet and that's okay because you
+haven't designed a UI! You can quickly try showing the [`native controls`](#media-controls) to see
+if everything is working.
 
 ## TypeScript
 
@@ -127,26 +129,7 @@ By default, we'll remove the controls on the underlying `<audio>` or `<video>` e
 expect a custom user interface (UI) to be presented. Set the `controls` property on the provider
 component if you'd like to display the native UI controls like so:
 
-{% if_js_lib is="html" %}
-
-```html
-<!-- Add `controls` here if you'd like to show native UI. -->
-<vds-video controls>
-  <video controls></video>
-</vds-video>
-```
-
-{% /if_js_lib %}
-
-{% if_js_lib is="react" %}
-
-```jsx
-<Video controls>
-  <video controls></video>
-</Video>
-```
-
-{% /if_js_lib %}
+{% code_snippet name="controls" highlight="html:3-4|react:7-8" /%}
 
 ## Media Autoplay
 
@@ -156,34 +139,17 @@ will take priority over the `preload` attribute so media won't be lazy loaded.
 Therefore, ensure you set `autoplay` on the provider component instead of the underlying media
 element like so:
 
-{% if_js_lib is="html" %}
-
-```html
-<vds-video autoplay>
-  <!-- Do not set autoplay on media element. -->
-  <video></video>
-</vds-video>
-```
-
-{% /if_js_lib %}
-
-{% if_js_lib is="react" %}
-
-```jsx
-<Video autoplay>
-  {/* Do not set autoplay on media element. */}
-  <video></video>
-</Video>
-```
-
-{% /if_js_lib %}
+{% code_snippet name="autoplay" highlight="html:1|react:5" /%}
 
 ## Media Poster
 
-You might've noticed that we declare two posters in the player markup. The one on the Vidstack
-provider element is the poster that you expect your users to load and see. The other on the
-`<video>` element is shown temporarily as the primary poster loads, or if JavaScript is disabled
-by a client or crawler (i.e., search engine).
+You can declare a second poster in your markup like so:
+
+{% code_snippet name="seo-poster" highlight="html:2|react:7" /%}
+
+The one on the Vidstack provider element is the poster that you expect your users to load and see.
+The other on the `<video>` element is shown temporarily as the primary poster loads, or if
+JavaScript is disabled by a client or crawler (i.e., search engine).
 
 You can choose to load a low-res image that the user will see while the main poster is loading or
 a `124x70` (or greater) sized image explicitly designed to show in search results.
@@ -209,7 +175,7 @@ achieve this. Once complete, your media content should now adapt responsively wi
 shift!
 
 {% callout type="info" %}
-You may still see a layout shift if the `vds-aspect-ratio` component script is imported late.
+You may still see a layout shift if the `$tag:vds-aspect-ratio` component is imported late.
 Consider including it in your critical render path (e.g., in your root `App.*` file).
 
 ```js title=App.*|copy

@@ -1,10 +1,10 @@
 import {
+  hasTriggerEvent,
   type MediaPlayEvent,
   type MediaPlayingEvent,
-  hasTriggerEvent,
   walkTriggerEventChain,
 } from '@vidstack/player';
-import { Media, Video } from '@vidstack/player-react';
+import { Media, Video } from '@vidstack/player/react';
 
 function Example() {
   function onPlay(event: MediaPlayEvent) {

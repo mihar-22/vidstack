@@ -1,10 +1,9 @@
+import { type HlsElement } from '@vidstack/player';
+import { Hls } from '@vidstack/player/react';
+import hlsjs from 'hls.js';
 import { useRef } from 'React';
 
-import hlsjs from 'hls.js';
-import { type HlsElement } from '@vidstack/player';
-import { Hls } from '@vidstack/player-react';
-
-function Media() {
+function MediaPlayer() {
   const providerRef = useRef<HlsElement>(null);
 
   useEffect(() => {

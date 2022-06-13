@@ -7,7 +7,7 @@ description: This provider enables video playback via the HTML5 video element.
 The video provider is used to embed video content into documents via the
 native [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element.
 
-{% code_preview name="usage" size="large" copy=true /%}
+{% code_preview name="usage" size="medium" copy=true /%}
 
 ### Multiple Sources
 

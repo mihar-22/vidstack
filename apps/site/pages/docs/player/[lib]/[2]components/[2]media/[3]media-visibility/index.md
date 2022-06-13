@@ -11,14 +11,14 @@ and [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_
 used to detect visibility changes, including minimizing the browser window, device sleep,
 changing tabs, or scrolling the provider in and out of view.
 
-{% code_snippet name="usage" copy=true /%}
+{% code_snippet name="usage" copyHighlight=true highlight="html:2,7|react:6,9" /%}
 
 ## Viewport Visibility
 
 You can perform actions on a provider as media enters or exits the browser's
 [visual viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport):
 
-{% code_preview name="viewport-visibility" size="xlarge" /%}
+{% code_preview name="viewport-visibility" size="large" copyHighlight=true highlight="react:6-13" /%}
 
 - In the preview above, we're playing media as it enters the viewport and pausing it as it leaves.
   Currently, other actions include muting `mute` and unmuting `unmute`.
@@ -46,7 +46,7 @@ page visibility API.
 Similarly to the actions you can take on viewport visibility changes, you can perform them on a
 provider as page visibility changes:
 
-{% code_preview name="page-visibility" size="xlarge" /%}
+{% code_preview name="page-visibility" size="large" copyHighlight=true highlight="react:6-8" /%}
 
 - In the preview above, we're playing media as it enters the page and pausing it as it exits.
   Currently, other actions include muting `mute` and unmuting `unmute`.

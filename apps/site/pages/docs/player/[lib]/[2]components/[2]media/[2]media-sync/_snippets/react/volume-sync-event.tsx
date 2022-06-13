@@ -1,7 +1,7 @@
 import { type MediaVolumeSyncEvent } from '@vidstack/player';
-import { Media, MediaSync } from '@vidstack/player-react';
+import { Media, MediaSync } from '@vidstack/player/react';
 
-export function MediaPlayer() {
+function MediaPlayer() {
   function onVolumeSync(event: MediaVolumeSyncEvent) {
     const { muted, volume } = event.detail;
     // ...

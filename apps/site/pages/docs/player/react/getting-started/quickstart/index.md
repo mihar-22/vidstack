@@ -9,11 +9,11 @@ description: Instructions to get your video player installed and on-screen using
 ### Install NPM Package {% slot="title" %}
 
 {% slot name="description" %}
-Install `@vidstack/player-react` and dependencies via NPM.
+Install `@vidstack/player` and dependencies via NPM.
 {% /slot %}
 
 ```bash {% copy=true %}
-npm i lit @vidstack/player@next @vidstack/player-react@next
+npm i lit @vidstack/player@next
 ```
 
 {% /step %}
@@ -27,7 +27,7 @@ Import media components into the `jsx` or `tsx` file where you'll be building yo
 {% /slot %}
 
 ```js {% copy=true %}
-import { Media, Video } from '@vidstack/player-react';
+import { Media, Video } from '@vidstack/player/react';
 ```
 
 {% /step %}
@@ -43,12 +43,7 @@ Add the following player JSX boilerplate to get started.
 ```jsx {% copy=true %}
 <Media>
   <Video poster="https://media-files.vidstack.io/poster.png">
-    <video
-      controls
-      src="https://media-files.vidstack.io/720p.mp4"
-      poster="https://media-files.vidstack.io/poster-seo.png"
-      preload="none"
-    />
+    <video src="https://media-files.vidstack.io/720p.mp4" preload="none" />
   </Video>
 </Media>
 ```

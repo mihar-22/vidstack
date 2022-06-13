@@ -1,7 +1,7 @@
 import { type MediaVisibilityChangeEvent } from '@vidstack/player';
-import { Media, MediaVisibility } from '@vidstack/player-react';
+import { Media, MediaVisibility } from '@vidstack/player/react';
 
-export function MediaPlayer() {
+function MediaPlayer() {
   function onVisibilityChange(event: MediaVisibilityChangeEvent) {
     const { viewport } = event.detail;
 

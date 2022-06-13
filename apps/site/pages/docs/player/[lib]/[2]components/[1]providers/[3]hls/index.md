@@ -18,7 +18,7 @@ streaming media using the [HTTP Live Streaming (HLS)](https://en.wikipedia.org/w
 HLS streaming is [supported natively](https://caniuse.com/?search=hls) in some browsers (e.g., iOS Safari),
 otherwise, we fallback to using [`hls.js`](https://github.com/video-dev/hls.js).
 
-{% code_preview name="usage" size="large" copy=true /%}
+{% code_preview name="usage" size="medium" copy=true /%}
 
 ## Loading `hls.js`
 

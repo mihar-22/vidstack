@@ -51,12 +51,7 @@ Add the following player HTML boilerplate to get started.
 ```html {% copy=true %}
 <vds-media>
   <vds-hls poster="https://media-files.vidstack.io/poster.png">
-    <video
-      controls
-      src="https://media-files.vidstack.io/hls/index.m3u8"
-      poster="https://media-files.vidstack.io/poster-seo.png"
-      preload="none"
-    ></video>
+    <video src="https://media-files.vidstack.io/hls/index.m3u8" preload="none"></video>
   </vds-hls>
 </vds-media>
 ```

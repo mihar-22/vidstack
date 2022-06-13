@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type MediaVisibilityChangeEvent } from '@vidstack/player';
-  import { Media, MediaVisibility, Video } from '@vidstack/player/svelte';
+  import { Media, MediaVisibility, Video, AspectRatio } from '@vidstack/player/svelte';
 
   import ArrowUpIcon from '~icons/ri/arrow-up-line';
   import ArrowDownIcon from '~icons/ri/arrow-down-line';
@@ -13,14 +13,12 @@
 </script>
 
 <div class="flex w-full flex-col items-center">
-  <div class="h-60" />
-
-  <div class="mt-4 flex px-2">
+  <div class="flex px-2">
     <p class="text-center text-sm">Scrolling down away from player will pause playback</p>
     <ArrowDownIcon class="ml-1 mt-0.5 animate-bounce" width="20" height="20" />
   </div>
 
-  <Media class="w-11/12 max-w-lg mt-8">
+  <Media class="w-full max-w-md mt-8">
     <MediaVisibility
       enterViewport="play"
       exitViewport="pause"
@@ -28,11 +26,13 @@
       viewportEnterDelay={0}
       on:vds-media-visibility-change={onMediaVisibilityChange}
     >
-      <Video controls autoplay muted>
-        <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
-          <track kind="captions" />
-        </video>
-      </Video>
+      <AspectRatio ratio="16/9">
+        <Video controls autoplay muted>
+          <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
+            <track kind="captions" />
+          </video>
+        </Video>
+      </AspectRatio>
     </MediaVisibility>
   </Media>
 

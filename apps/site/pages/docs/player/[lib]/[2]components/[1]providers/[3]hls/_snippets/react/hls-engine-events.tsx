@@ -1,7 +1,7 @@
-import { type HlsInstanceEvent, type HlsDestroyingEvent } from '@vidstack/player';
-import { Hls } from '@vidstack/player-react';
+import { type HlsDestroyingEvent, type HlsInstanceEvent } from '@vidstack/player';
+import { Hls } from '@vidstack/player/react';
 
-function Media() {
+function MediaPlayer() {
   function onInstance(event: HlsInstanceEvent) {
     // `hls.js` instance.
     const hls = event.detail;

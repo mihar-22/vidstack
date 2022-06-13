@@ -9,11 +9,11 @@ description: Instructions to get your HLS player installed and on-screen using R
 ### Install NPM Package {% slot="title" %}
 
 {% slot name="description" %}
-Install `@vidstack/player-react` and dependencies via NPM.
+Install `@vidstack/player` and dependencies via NPM.
 {% /slot %}
 
 ```bash {% copy=true %}
-npm i lit @vidstack/player@next @vidstack/player-react@next
+npm i lit @vidstack/player@next
 ```
 
 {% /step %}
@@ -27,7 +27,7 @@ Import media components into the `jsx` or `tsx` file where you'll be building yo
 {% /slot %}
 
 ```js {% copy=true %}
-import { Hls, Media } from '@vidstack/player-react';
+import { Hls, Media } from '@vidstack/player/react';
 ```
 
 {% /step %}
@@ -43,12 +43,7 @@ Add the following player JSX boilerplate to get started.
 ```jsx {% copy=true %}
 <Media>
   <Hls poster="https://media-files.vidstack.io/poster.png">
-    <video
-      controls
-      src="https://media-files.vidstack.io/hls/index.m3u8"
-      poster="https://media-files.vidstack.io/poster-seo.png"
-      preload="none"
-    />
+    <video src="https://media-files.vidstack.io/hls/index.m3u8" preload="none" />
   </Hls>
 </Media>
 ```

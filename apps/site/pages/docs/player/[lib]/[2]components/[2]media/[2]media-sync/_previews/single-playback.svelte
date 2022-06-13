@@ -1,26 +1,30 @@
 <script>
-  import { Media, MediaSync, Video } from '@vidstack/player/svelte';
+  import { Media, MediaSync, Video, AspectRatio } from '@vidstack/player/svelte';
 </script>
 
-<div class="flex flex-col p-2">
+<div class="flex flex-col">
   <div class="media flex flex-col items-center">
-    <Media class="max-w-xs">
+    <Media class="w-full max-w-xs">
       <MediaSync singlePlayback>
-        <Video controls>
-          <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
-            <track kind="captions" />
-          </video>
-        </Video>
+        <AspectRatio ratio="16/9">
+          <Video controls>
+            <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
+              <track kind="captions" />
+            </video>
+          </Video>
+        </AspectRatio>
       </MediaSync>
     </Media>
 
-    <Media class="max-w-xs">
+    <Media class="w-full max-w-xs mt-2">
       <MediaSync singlePlayback>
-        <Video controls>
-          <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
-            <track kind="captions" />
-          </video>
-        </Video>
+        <AspectRatio ratio="16/9">
+          <Video controls>
+            <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
+              <track kind="captions" />
+            </video>
+          </Video>
+        </AspectRatio>
       </MediaSync>
     </Media>
   </div>

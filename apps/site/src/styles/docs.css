@@ -11,17 +11,19 @@
 }
 
 .code-preview,
+.code-snippets,
 .code-fence {
   --code-fence-bg: rgb(22, 22, 22);
   --code-fence-top-bar-bg: rgb(22, 22, 22);
   --code-copied-bg-color: rgba(var(--color-brand-rgb), 0.8);
   --terminal-line-pointer: var(--color-brand);
   --code-highlight-border: var(--color-brand);
-  --code-highlight-color: rgba(var(--color-brand-rgb), 0.1);
+  --code-highlight-color: rgba(var(--color-brand-rgb), 0.08);
 }
 
 @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
   .code-preview,
+  .code-snippets,
   .code-fence {
     --code-fence-top-bar-bg: rgb(22, 22, 22 / 0.6);
   }

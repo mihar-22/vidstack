@@ -51,7 +51,7 @@ Add the following player HTML boilerplate to get started.
 ```html {% copy=true %}
 <vds-media>
   <vds-audio>
-    <audio controls src="https://media-files.vidstack.io/audio.mp3" preload="none"></audio>
+    <audio src="https://media-files.vidstack.io/audio.mp3" preload="none"></audio>
   </vds-audio>
 </vds-media>
 ```

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type MediaVisibilityChangeEvent } from '@vidstack/player';
-  import { Media, MediaVisibility, Video } from '@vidstack/player/svelte';
+  import { Media, MediaVisibility, Video, AspectRatio } from '@vidstack/player/svelte';
 
   function onMediaVisibilityChange(event: MediaVisibilityChangeEvent) {
     const { page } = event.detail;
@@ -10,18 +10,20 @@
 </script>
 
 <div class="flex flex-col w-full items-center">
-  <Media class="w-11/12 max-w-lg mt-8">
+  <Media class="w-full max-w-md">
     <MediaVisibility
       enterPage="play"
       exitPage="pause"
       pageEnterDelay={0}
       on:vds-media-visibility-change={onMediaVisibilityChange}
     >
-      <Video controls autoplay muted volume={0.2}>
-        <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
-          <track kind="captions" />
-        </video>
-      </Video>
+      <AspectRatio ratio="16/9">
+        <Video controls autoplay muted volume={0.2}>
+          <video controls preload="none" src="https://media-files.vidstack.io/360p.mp4">
+            <track kind="captions" />
+          </video>
+        </Video>
+      </AspectRatio>
     </MediaVisibility>
   </Media>
 

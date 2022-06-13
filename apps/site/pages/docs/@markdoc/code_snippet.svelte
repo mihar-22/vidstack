@@ -86,7 +86,11 @@
 
     <div class="code relative z-0 overflow-hidden">
       <div class={clsx($$restProps.nums && '992:pl-10')}>
-        <pre class="m-0 overflow-x-auto scrollbar">
+        <pre
+          class={clsx(
+            'm-0 scrollbar',
+            $$restProps.nums && lineNums.length >= 100 ? 'pl-6' : 'pl-3',
+          )}>
           <code
             style={clsx(
               `width: ${currentSnippet.scrollX * 9.48}px;`,

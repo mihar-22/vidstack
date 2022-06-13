@@ -131,7 +131,7 @@
 
   <div class="code relative z-0 overflow-hidden">
     <div class={clsx(nums && '992:pl-10')}>
-      <pre class="scrollbar">
+      <pre class={clsx('scrollbar', nums && lines.length >= 100 ? 'pl-6' : 'pl-3')}>
         {@html highlightedCode}
       </pre>
     </div>

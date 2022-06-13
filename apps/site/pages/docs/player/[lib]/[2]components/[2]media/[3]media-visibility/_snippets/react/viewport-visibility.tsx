@@ -1,6 +1,6 @@
-import { Media, MediaVisibility } from '@vidstack/player-react';
+import { Media, MediaVisibility } from '@vidstack/player/react';
 
-export function MediaPlayer() {
+function MediaPlayer() {
   return (
     <Media>
       <MediaVisibility
